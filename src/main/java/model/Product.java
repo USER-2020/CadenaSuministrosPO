@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.util.Objects;
+
 /**
  *
  * @author Juan Fernando Zuluaga
@@ -17,6 +19,7 @@ public class Product {
      * protected
      * within
      **/
+    private String descripcion;
     private String nombre;
     private int numeroSerial;
     private String color;
@@ -28,9 +31,11 @@ public class Product {
     private float costoAlmacenamiento;
     
     //Contructores
-    public Product(String nombre, int numeroSerial, String color, String imagen, String marca, String material, float costoProduccion, float costoVenta, float costoAlmacenamiento) {    
-        this.numeroSerial = numeroSerial;
+
+    public Product(String descripcion, String nombre, int numeroSerial, String color, String imagen, String marca, String material, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
+        this.descripcion = descripcion;
         this.nombre = nombre;
+        this.numeroSerial = numeroSerial;
         this.color = color;
         this.imagen = imagen;
         this.marca = marca;
@@ -39,13 +44,24 @@ public class Product {
         this.costoVenta = costoVenta;
         this.costoAlmacenamiento = costoAlmacenamiento;
     }
+   
 
     public Product() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
     }
+    
+    
 
     //Métodos
     //Getter
+    public String getDescripcion() {
+        return descripcion;
+    }
+    
+    public void setDescripcion(String descripcion) {    
+        this.descripcion = descripcion;
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -122,8 +138,36 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" + "nombre=" + nombre + ", numeroSerial=" + numeroSerial + ", color=" + color + ", imagen=" + imagen + ", marca=" + marca + ", material=" + material + ", costoProduccion=" + costoProduccion + ", costoVenta=" + costoVenta + ", costoAlmacenamiento=" + costoAlmacenamiento + '}';
+        return "Product{" + "descripcion=" + descripcion + ", nombre=" + nombre + ", numeroSerial=" + numeroSerial + ", color=" + color + ", imagen=" + imagen + ", marca=" + marca + ", material=" + material + ", costoProduccion=" + costoProduccion + ", costoVenta=" + costoVenta + ", costoAlmacenamiento=" + costoAlmacenamiento + '}';
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 89 * hash + Objects.hashCode(this.nombre);
+        hash = 89 * hash + this.numeroSerial;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Product other = (Product) obj;
+        if (this.numeroSerial != other.numeroSerial) {
+            return false;
+        }
+        return Objects.equals(this.nombre, other.nombre);
+    }
+
+    
     
     
     
