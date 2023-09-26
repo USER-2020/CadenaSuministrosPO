@@ -10,7 +10,7 @@ import java.util.Objects;
  *
  * @author Juan Fernando Zuluaga
  */
-public class Product {
+public class Product implements Comparable<Product>{
     //Componente  de una clase concreta
     //Atributos tienen modificadores que definen la visibilidad
     /**
@@ -21,7 +21,7 @@ public class Product {
      **/
     private String descripcion;
     private String nombre;
-    private int numeroSerial;
+    public int numeroSerial;
     private String color;
     private String imagen;
     private String marca;
@@ -165,6 +165,12 @@ public class Product {
             return false;
         }
         return Objects.equals(this.nombre, other.nombre);
+    }
+
+    @Override
+    public int compareTo(Product otroProducto) {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return Integer.compare(this.numeroSerial, otroProducto.numeroSerial);
     }
 
     

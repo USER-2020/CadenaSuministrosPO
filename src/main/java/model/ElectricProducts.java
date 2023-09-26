@@ -53,6 +53,17 @@ public class ElectricProducts extends Product{
         return super.toString()+"ElectricProducts{" + "carga=" + carga + ", calibre=" + calibre + '}';
     }
     
-    
+    @Override
+    public int compareTo(Product otroProducto) {
+        // Implementa la lógica de comparación específica para ElectricProducts
+        // Puedes usar el número de serie u otra propiedad relevante
+        // Asegúrate de hacer un casting adecuado si es necesario
+        if (otroProducto instanceof ElectricProducts) {
+            ElectricProducts otroElectrico = (ElectricProducts) otroProducto;
+            return Integer.compare(this.numeroSerial, otroElectrico.numeroSerial);
+        }
+        // Implementa la comparación si el otro objeto no es de tipo ElectricProducts
+        return super.compareTo(otroProducto);
+    }
     
 }

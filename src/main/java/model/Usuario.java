@@ -11,7 +11,7 @@ import java.util.Objects;
  *
  *
  */
-public class Usuario {
+public class Usuario implements Comparable<Usuario> {
 
     public enum TipoUsuario {
         Administrador,
@@ -121,7 +121,11 @@ public class Usuario {
         }
         return Objects.equals(this.nombre, other.nombre);
     }
-    
-    
+
+    @Override
+    public int compareTo(Usuario otroUsuario) {
+        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return Integer.compare(this.id, otroUsuario.id);
+    }
 
 }
