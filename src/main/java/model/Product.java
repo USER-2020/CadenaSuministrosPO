@@ -22,43 +22,45 @@ public class Product implements Comparable<Product>{
     private String descripcion;
     private String nombre;
     public int numeroSerial;
+    private int idBodega;
     private String color;
     private String imagen;
     private String marca;
     private String material;
+    private String  demanda;
     private float costoProduccion;
     private float costoVenta;
     private float costoAlmacenamiento;
     
     //Contructores
 
-    public Product(String descripcion, String nombre, int numeroSerial, String color, String imagen, String marca, String material, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
+    public Product(String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
         this.descripcion = descripcion;
         this.nombre = nombre;
         this.numeroSerial = numeroSerial;
+        this.idBodega = idBodega;
         this.color = color;
         this.imagen = imagen;
         this.marca = marca;
         this.material = material;
+        this.demanda = demanda;
         this.costoProduccion = costoProduccion;
         this.costoVenta = costoVenta;
         this.costoAlmacenamiento = costoAlmacenamiento;
     }
-   
+     
 
     public Product() {
         
     }
-    
-    
 
     //Métodos
     //Getter
     public String getDescripcion() {
         return descripcion;
     }
-    
-    public void setDescripcion(String descripcion) {    
+
+    public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
 
@@ -66,70 +68,84 @@ public class Product implements Comparable<Product>{
         return nombre;
     }
 
-    public int getNumeroSerial() {
-        return numeroSerial;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public String getImagen() {
-        return imagen;
-    }
-
-    public String getMarca() {
-        return marca;
-    }
-
-    public String getMaterial() {
-        return material;
-    }
-
-    public float getCostoProduccion() {
-        return costoProduccion;
-    }
-
-    public float getCostoVenta() {
-        return costoVenta;
-    }
-
-    public float getCostoAlmacenamiento() {
-        return costoAlmacenamiento;
-    }
-    
-    //Setter
-
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getNumeroSerial() {
+        return numeroSerial;
     }
 
     public void setNumeroSerial(int numeroSerial) {
         this.numeroSerial = numeroSerial;
     }
 
+    public int getIdBodega() {
+        return idBodega;
+    }
+
+    public void setIdBodega(int idBodega) {
+        this.idBodega = idBodega;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
     public void setColor(String color) {
         this.color = color;
+    }
+
+    public String getImagen() {
+        return imagen;
     }
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 
+    public String getMarca() {
+        return marca;
+    }
+
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public String getMaterial() {
+        return material;
     }
 
     public void setMaterial(String material) {
         this.material = material;
     }
 
+    public String getDemanda() {
+        return demanda;
+    }
+
+    public void setDemanda(String demanda) {
+        this.demanda = demanda;
+    }
+
+    public float getCostoProduccion() {
+        return costoProduccion;
+    }
+
     public void setCostoProduccion(float costoProduccion) {
         this.costoProduccion = costoProduccion;
     }
 
+    public float getCostoVenta() {
+        return costoVenta;
+    }
+
     public void setCostoVenta(float costoVenta) {
         this.costoVenta = costoVenta;
+    }
+
+    public float getCostoAlmacenamiento() {
+        return costoAlmacenamiento;
     }
 
     public void setCostoAlmacenamiento(float costoAlmacenamiento) {
@@ -138,9 +154,9 @@ public class Product implements Comparable<Product>{
 
     @Override
     public String toString() {
-        return "Product{" + "descripcion=" + descripcion + ", nombre=" + nombre + ", numeroSerial=" + numeroSerial + ", color=" + color + ", imagen=" + imagen + ", marca=" + marca + ", material=" + material + ", costoProduccion=" + costoProduccion + ", costoVenta=" + costoVenta + ", costoAlmacenamiento=" + costoAlmacenamiento + '}';
+        return "Product{" + "descripcion=" + descripcion + ", nombre=" + nombre + ", numeroSerial=" + numeroSerial + ", idBodega=" + idBodega + ", color=" + color + ", imagen=" + imagen + ", marca=" + marca + ", material=" + material + ", demanda=" + demanda + ", costoProduccion=" + costoProduccion + ", costoVenta=" + costoVenta + ", costoAlmacenamiento=" + costoAlmacenamiento + '}';
     }
-
+   
     @Override
     public int hashCode() {
         int hash = 7;

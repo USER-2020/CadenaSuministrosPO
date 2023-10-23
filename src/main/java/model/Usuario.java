@@ -128,4 +128,11 @@ public class Usuario implements Comparable<Usuario> {
         return Integer.compare(this.id, otroUsuario.id);
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", tipoUSer=" + tipoUSer + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", cellphone=" + cellphone + ", email=" + email + '}';
+    }
+    
+    
+
 }

@@ -1,4 +1,10 @@
-model\ElectricProducts.class
-view\Principal.class
+model\Administrador.class
+model\Usuario$TipoUsuario.class
+sustentacion_1\sustentacionMain.class
 model\Product.class
+model\ElectricProducts.class
+model\Vendedor.class
+view\Principal.class
+model\Usuario.class
+model\Bodeguero.class
 model\HerrajesProducts.class

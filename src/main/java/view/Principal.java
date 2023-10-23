@@ -4,6 +4,7 @@
  */
 package view;
 
+import Controller.ProductController;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -17,13 +18,32 @@ import model.Usuario;
 
 /**
  *
- * @author Liliana Aguirre
+ * @author Jusn Fernando Zuluaga
  */
 public class Principal {
 
     /**
      * @param args the command line arguments
      */
+    ProductController pcontrolador;
+    Scanner leer;
+    public Principal() {
+        
+        pcontrolador = new ProductController();
+        leer = new Scanner(System.in);
+    }
+    
+    public void consultarUno(){
+        System.out.println("Digite el serial del usuario que desea buscar");
+        pcontrolador.consultar();
+        Product pp = new Product();
+        pp.setNumeroSerial(leer.nextInt());
+        pp=(Product)pcontrolador.consultar(pp);
+        if(pp != null)
+            System.out.println("El producto encontrado es "+pp.toString());
+        else
+            System.out.println("Producto No Encontrado" + pp.getNumeroSerial());
+    }
     public static void main(String[] args) {
         // TODO code application logic here
         //Menu

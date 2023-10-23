@@ -12,14 +12,14 @@ public class HerrajesProducts extends Product {
 
     private String tipoElemento;
 
-    public HerrajesProducts(String tipoElemento, String descripcion, String nombre, int numeroSerial, String color, String imagen, String marca, String material, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
-        super(descripcion, nombre, numeroSerial, color, imagen, marca, material, costoProduccion, costoVenta, costoAlmacenamiento);
+    public HerrajesProducts(String tipoElemento, String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
+        super(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
         this.tipoElemento = tipoElemento;
     }
 
     public HerrajesProducts() {
     }
-
+    
     public HerrajesProducts(String tipoElemento) {
         this.tipoElemento = tipoElemento;
     }
@@ -36,6 +36,8 @@ public class HerrajesProducts extends Product {
     public String toString() {
         return super.toString() + "HerrajesProducts{" + "tipoElemento=" + tipoElemento + '}';
     }
+
+    
 
     @Override
     public int compareTo(Product otroProducto) {
