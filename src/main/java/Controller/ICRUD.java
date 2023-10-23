@@ -10,9 +10,9 @@ package Controller;
  */
 public interface ICRUD {
     public boolean insertar(Object obj); //Create
-    public Object consultar(int idProducto);
+    public Object consultar(int id);
     public void consultar();
-    public Object actualizar(int idProducto); //Update
+    public Object actualizar(int id); //Update
     public boolean borrar(Object obj); //Delete
     public boolean ordenar();
     public Object consultar(Object obj);

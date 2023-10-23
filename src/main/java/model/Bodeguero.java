@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Juan Fernando Zuluaga
  */
-public class Bodeguero {
+public class Bodeguero extends Usuario{
     
     private Date fechaIngresoBodeguero;
     private float sueldoBodeguero;

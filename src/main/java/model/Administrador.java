@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Juan Fernando Zuluaga
  */
-public class Administrador {
+public class Administrador extends Usuario{
     
     private Date fechaIngresoAdministrador;
     private float sueldoAdministrador;
