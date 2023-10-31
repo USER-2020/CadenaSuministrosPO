@@ -35,6 +35,7 @@ public class Usuario implements Comparable<Usuario> {
         this.direccion = direccion;
         this.cellphone = cellphone;
         this.email = email;
+        
     }
 
     public Usuario() {

@@ -46,18 +46,46 @@ public class ElectricProductsController implements ICRUD{
     }
 
     @Override
-    public Object actualizar(int idProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Object actualizar(int idElectricProduct) {
+        for(ElectricProducts EProducts : arregloProductosElectricos){
+            if(EProducts.getNumeroSerial() == idElectricProduct){
+                
+                EProducts.setNombre(EProducts.getNombre());
+                EProducts.setDescripcion(EProducts.getNombre());
+                EProducts.setIdBodega(EProducts.getIdBodega());
+                EProducts.setColor(EProducts.getColor());
+                EProducts.setMarca(EProducts.getMarca());
+                EProducts.setMaterial(EProducts.getMaterial());
+                EProducts.setDemanda(EProducts.getDemanda());
+                EProducts.setCostoProduccion(EProducts.getCostoProduccion());
+                EProducts.setCostoVenta(EProducts.getCostoVenta());
+                EProducts.setCostoAlmacenamiento(EProducts.getCostoAlmacenamiento());
+                EProducts.setCarga(EProducts.getCarga());
+                EProducts.setCalibre(EProducts.getCalibre());
+                
+                return EProducts;
+            }
+        }
+        return null ;
     }
 
     @Override
     public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if( obj instanceof ElectricProducts){
+            ElectricProducts eProductABorrar = (ElectricProducts) obj;
+            boolean eliminado = arregloProductosElectricos.remove(eProductABorrar);
+            return true;
+        }
+        return false;
     }
 
     @Override
     public boolean ordenar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(!arregloProductosElectricos.isEmpty()){
+            Collections.sort(arregloProductosElectricos);
+            return true;
+        }
+        return false;
     }
 
     @Override

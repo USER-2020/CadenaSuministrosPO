@@ -46,8 +46,22 @@ public class HerrajesProductsController implements ICRUD{
     }
 
     @Override
-    public Object actualizar(int idProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Object actualizar(int idProductoHerraje) {
+        for( HerrajesProducts hProduct : arregloProductosHerrajes){
+            if(hProduct.getNumeroSerial() == idProductoHerraje){
+                
+                hProduct.setNombre(hProduct.getNombre());
+                hProduct.setDescripcion(hProduct.getDescripcion());
+                hProduct.setIdBodega(hProduct.getIdBodega());
+                hProduct.setColor(hProduct.getColor());
+                hProduct.setMarca(hProduct.getMarca());
+                hProduct.setMaterial(hProduct.getMaterial());
+                hProduct.setDemanda(hProduct.getDemanda());
+                hProduct.setCostoProduccion(hProduct.getCostoProduccion());
+                hProduct.setCostoVenta(hProduct.getCostoVenta());
+                
+            }
+        }
     }
 
     @Override

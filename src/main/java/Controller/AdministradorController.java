@@ -7,6 +7,7 @@ package Controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import model.Administrador;
+import model.Usuario;
 
 /**
  *
@@ -46,18 +47,39 @@ public class AdministradorController implements ICRUD{
     }
 
     @Override
-    public Object actualizar(int idProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Object actualizar(int idAdmin) {
+        for(Administrador admin : arregloAdministradores){
+            if( admin.getId() == idAdmin){
+                admin.setNombre(admin.getNombre());
+                admin.setApellido(admin.getApellido());
+                admin.setTipoUSer(Administrador.TipoUsuario.Administrador);
+                admin.setDireccion(admin.getDireccion());
+                admin.setEmail(admin.getEmail());
+                admin.setCellphone(admin.getCellphone());
+                
+                return admin;
+            }
+        }
+        return null;
     }
 
     @Override
     public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(obj instanceof Administrador) {
+            Administrador adminABorrar = (Administrador) obj;
+            boolean eliminado = arregloAdministradores.remove(adminABorrar);
+            return eliminado;
+        }
+        return false;
     }
 
     @Override
     public boolean ordenar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(!arregloAdministradores.isEmpty()){
+            Collections.sort(arregloAdministradores);
+            return true;
+        }
+        return false;
     }
 
     @Override

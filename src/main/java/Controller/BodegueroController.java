@@ -46,18 +46,40 @@ public class BodegueroController implements ICRUD{
     }
 
     @Override
-    public Object actualizar(int idProducto) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Object actualizar(int idBodeguero) {
+        for (Bodeguero bod : arregloBodegueros){
+            if(bod.getId() == idBodeguero){
+                bod.setNombre(bod.getNombre());
+                bod.setApellido(bod.getApellido());
+                bod.setTipoUSer(Bodeguero.TipoUsuario.Bodeguero);
+                bod.setDireccion(bod.getDireccion());
+                bod.setEmail(bod.getEmail());
+                bod.setCellphone(bod.getCellphone());
+                
+                return bod;
+            }
+        }
+        
+        return null;
     }
 
     @Override
     public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+         if (obj instanceof Bodeguero) {
+        Bodeguero bodABorrar = (Bodeguero) obj;
+        boolean eliminado = arregloBodegueros.remove(bodABorrar);
+        return eliminado;
+    }
+    return false;
     }
 
     @Override
     public boolean ordenar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if(!arregloBodegueros.isEmpty()){
+            Collections.sort(arregloBodegueros);
+            return true;
+        }
+        return false;
     }
 
     @Override
