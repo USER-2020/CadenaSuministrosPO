@@ -168,9 +168,68 @@ public class ProductController implements ICRUD {
     }
 
     @Override
-    public Product actualizar(int idProducto) {
+    public Product actualizar(int idProduct) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
+    public boolean updateProduct(Product producto) {
+        String consulta = "UPDATE product SET nombre = ?, descripcion = ?, idBodega = ?, color = ?, imagen = ?, marca = ?, material = ?, demanda = ?, costoProduccion = ?, costoVenta = ?, costoAlmacenamiento = ? WHERE numeroSerial = ?";
+
+        try (PreparedStatement statement = connection.prepareStatement(consulta)) {
+            statement.setString(1, producto.getNombre());
+            statement.setString(2, producto.getDescripcion());
+            statement.setInt(3, producto.getIdBodega());
+            statement.setString(4, producto.getColor());
+            statement.setString(5, producto.getImagen());
+            statement.setString(6, producto.getMarca());
+            statement.setString(7, producto.getMaterial());
+            statement.setString(8, producto.getDemanda());
+            statement.setFloat(9, producto.getCostoProduccion());
+            statement.setFloat(10, producto.getCostoVenta());
+            statement.setFloat(11, producto.getCostoAlmacenamiento());
+            statement.setInt(12, producto.getNumeroSerial());
+
+            int filasAfectadas = statement.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public Product searchByNumeroSerial(int idProducto) {
         Product producto = null;
+        ConexionBD conn = new ConexionBD();
+
+        try (Connection connection = conn.connectMYSQL()) {
+            String consultaSQL = "SELECT * FROM product WHERE numeroSerial = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(consultaSQL)) {
+                statement.setInt(1, idProducto);
+
+                try (ResultSet resultSet = statement.executeQuery()) {
+                    if (resultSet.next()) {
+                        producto = new Product();
+                        producto.setNumeroSerial(resultSet.getInt("numeroSerial"));
+                        producto.setNombre(resultSet.getString("nombre"));
+                        producto.setDescripcion(resultSet.getString("descripcion"));
+                        producto.setIdBodega(resultSet.getInt("idBodega"));
+                        producto.setColor(resultSet.getString("color"));
+                        producto.setImagen(resultSet.getString("imagen"));
+                        producto.setMarca(resultSet.getString("marca"));
+                        producto.setMaterial(resultSet.getString("material"));
+                        producto.setDemanda(resultSet.getString("demanda"));
+                        producto.setCostoProduccion(resultSet.getFloat("costoProduccion"));
+                        producto.setCostoVenta(resultSet.getFloat("costoVenta"));
+                        producto.setCostoAlmacenamiento(resultSet.getFloat("costoAlmacenamiento"));
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
+        }
+
         return producto;
     }
 

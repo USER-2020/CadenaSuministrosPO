@@ -264,6 +264,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="ORDENAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBOrdenarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -286,6 +289,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTCostoProduccionProducto">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTCostoProduccionProductoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="jTCostoVentaProducto">
         </Component>

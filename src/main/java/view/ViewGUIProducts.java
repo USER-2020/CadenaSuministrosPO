@@ -110,6 +110,11 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jBtnDelete.setText("BORRAR");
 
         jBOrdenar.setText("ORDENAR");
+        jBOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBOrdenarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setText("$-PRODUCCCION");
 
@@ -118,6 +123,12 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jLabel10.setText("$-VENTA");
 
         jLabel11.setText("$-ALMACENAMIENTO");
+
+        jTCostoProduccionProducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTCostoProduccionProductoActionPerformed(evt);
+            }
+        });
 
         jLabel12.setText("ID_BODEGA");
 
@@ -347,12 +358,32 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
     private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
         // TODO add your handling code here:
-        int nroSerial = Integer.parseInt(jTNumeroSerialProducto.getText());
-        Object updateProduct = controllerProduct.actualizar(nroSerial);
+        int numeroSerial = Integer.parseInt(jTNumeroSerialProducto.getText());
+        String nombre = jTNombreProduct.getText();
+        String descripcion = jTDescripcionProducto.getText();
+        int idBodega = Integer.parseInt(jTIdBodega.getText());
+        String color = jTColorProducto.getText();
+        String imagen = null;
+        String marca = jTMarcaProducto.getText();
+        String material = jTMaterialProducto.getText();
+        String demanda = jTDemandaProducto.getText();
+        float costoProduccion = Float.parseFloat(jTCostoProduccionProducto.getText());
+        float costoVenta = Float.parseFloat(jTCostoVentaProducto.getText());
+        float costoAlmacenamiento = Float.parseFloat(jTCostoAlmacenamientoProducto.getText());
 
-        if (updateProduct != null) {
-            JOptionPane.showMessageDialog(this, "Producto actualizado con exito");
+        Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
 
+        ProductController productoController = new ProductController();
+        boolean updateSuccess = productoController.updateProduct(producto);
+        
+
+        if (updateSuccess) {
+            resetearCampos();
+            jTNumeroSerialProducto.setEnabled(true);
+            productoController.MostrarProductos(jTableUsuario);
+            JOptionPane.showMessageDialog(this, "Producto actualizado con exito");            
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el producto");
         }
     }//GEN-LAST:event_jBtnUpdateActionPerformed
 
@@ -364,20 +395,48 @@ public class ViewGUIProducts extends javax.swing.JFrame {
             Object numeroSerial = jTableUsuario.getValueAt(selectedRow, jTableUsuario.getColumn("numeroSerial").getModelIndex());
             if (numeroSerial != null) {
                 int numeroSerialProducto = Integer.parseInt(numeroSerial.toString());
-                
-                Product updateProduct = controllerProduct.actualizar(numeroSerialProducto);
-                
-                if(updateProduct != null){
-                    
+
+                //Intancia del controlador de productos
+                ProductController controllerProduct = new ProductController();
+
+                Product updateProduct = controllerProduct.searchByNumeroSerial(numeroSerialProducto);
+
+                if (updateProduct != null) {
+                    jTNumeroSerialProducto.setText(String.valueOf(updateProduct.getNumeroSerial()));
+                    jTNombreProduct.setText(updateProduct.getNombre());
+                    jTDescripcionProducto.setText(updateProduct.getDescripcion());
+                    jTColorProducto.setText(updateProduct.getColor());
+                    jTMaterialProducto.setText(updateProduct.getMaterial());
+                    jTMarcaProducto.setText(updateProduct.getMarca());
+                    jTDemandaProducto.setText(updateProduct.getDemanda());
+                    jTIdBodega.setText(String.valueOf(updateProduct.getIdBodega()));
+                    jTCostoProduccionProducto.setText(String.valueOf(updateProduct.getCostoProduccion()));
+                    jTCostoVentaProducto.setText(String.valueOf(updateProduct.getCostoVenta()));
+                    jTCostoAlmacenamientoProducto.setText(String.valueOf(updateProduct.getCostoAlmacenamiento()));
+                    jTNumeroSerialProducto.setEnabled(false); //inhabil;itar el campo de numero de serial par ano poderlo modificar
+                } else {
+                    jTNumeroSerialProducto.setEnabled(false); //habilitar de nuevo el campo por default
                 }
 
                 // Llama al método para actualizar con el número de serie seleccionado
-                ProductController controllerProduct = new ProductController();
-                controllerProduct.actualizar(numeroSerialProducto);
-                System.out.println("IDProducto: " + numeroSerialProducto);
+//                ProductController controllerProduct = new ProductController();
+//                controllerProduct.actualizar(numeroSerialProducto);
+//                System.out.println("IDProducto: " + numeroSerialProducto);
             }
         }
     }//GEN-LAST:event_jTableUsuarioMouseClicked
+
+    private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
+        // TODO add your handling code here:
+        ProductController controllerProduct = new ProductController();
+        resetearCampos();
+        jTNumeroSerialProducto.setEnabled(true);
+        controllerProduct.MostrarProductos(jTableUsuario);
+    }//GEN-LAST:event_jBOrdenarActionPerformed
+
+    private void jTCostoProduccionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCostoProduccionProductoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTCostoProduccionProductoActionPerformed
 
     /**
      * @param args the command line arguments
