@@ -24,7 +24,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
     public ViewGUIProducts() {
         initComponents();
         ProductController controllerProduct = new ProductController();
-        controllerProduct.MostrarProductos(jTableUsuario);
+        controllerProduct.MostrarProductos(jTableProducts);
 
     }
 
@@ -67,7 +67,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jTIdBodega = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableUsuario = new javax.swing.JTable();
+        jTableProducts = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -108,6 +108,11 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         });
 
         jBtnDelete.setText("BORRAR");
+        jBtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDeleteActionPerformed(evt);
+            }
+        });
 
         jBOrdenar.setText("ORDENAR");
         jBOrdenar.addActionListener(new java.awt.event.ActionListener() {
@@ -247,7 +252,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de productos"));
 
-        jTableUsuario.setModel(new javax.swing.table.DefaultTableModel(
+        jTableProducts.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -258,12 +263,12 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
             }
         ));
-        jTableUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTableProducts.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableUsuarioMouseClicked(evt);
+                jTableProductsMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(jTableUsuario);
+        jScrollPane1.setViewportView(jTableProducts);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -346,7 +351,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         if (exito) {
             resetearCampos();
             JOptionPane.showMessageDialog(this, "Producto agregado con exito");
-            controllerProduct.MostrarProductos(jTableUsuario);
+            controllerProduct.MostrarProductos(jTableProducts);
         } else {
             JOptionPane.showMessageDialog(this, "Error al crear el producto");
         }
@@ -375,24 +380,23 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
         ProductController productoController = new ProductController();
         boolean updateSuccess = productoController.updateProduct(producto);
-        
 
         if (updateSuccess) {
             resetearCampos();
             jTNumeroSerialProducto.setEnabled(true);
-            productoController.MostrarProductos(jTableUsuario);
-            JOptionPane.showMessageDialog(this, "Producto actualizado con exito");            
+            productoController.MostrarProductos(jTableProducts);
+            JOptionPane.showMessageDialog(this, "Producto actualizado con exito");
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar el producto");
         }
     }//GEN-LAST:event_jBtnUpdateActionPerformed
 
-    private void jTableUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsuarioMouseClicked
+    private void jTableProductsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableProductsMouseClicked
         // TODO add your handling code here:
-        int selectedRow = jTableUsuario.getSelectedRow();
+        int selectedRow = jTableProducts.getSelectedRow();
         if (selectedRow >= 0) {
             // Obten el valor de la celda en la columna de número de serie (ajusta el índice de columna según tu tabla)
-            Object numeroSerial = jTableUsuario.getValueAt(selectedRow, jTableUsuario.getColumn("numeroSerial").getModelIndex());
+            Object numeroSerial = jTableProducts.getValueAt(selectedRow, jTableProducts.getColumn("numeroSerial").getModelIndex());
             if (numeroSerial != null) {
                 int numeroSerialProducto = Integer.parseInt(numeroSerial.toString());
 
@@ -424,19 +428,36 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 //                System.out.println("IDProducto: " + numeroSerialProducto);
             }
         }
-    }//GEN-LAST:event_jTableUsuarioMouseClicked
+    }//GEN-LAST:event_jTableProductsMouseClicked
 
     private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
         // TODO add your handling code here:
         ProductController controllerProduct = new ProductController();
         resetearCampos();
         jTNumeroSerialProducto.setEnabled(true);
-        controllerProduct.MostrarProductos(jTableUsuario);
+        controllerProduct.MostrarProductos(jTableProducts);
     }//GEN-LAST:event_jBOrdenarActionPerformed
 
     private void jTCostoProduccionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCostoProduccionProductoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTCostoProduccionProductoActionPerformed
+
+    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
+        // TODO add your handling code here:
+        int numeroSerial = Integer.parseInt(jTNumeroSerialProducto.getText());
+        ProductController controllerProduct = new ProductController();
+        Product productoAEliminar = new Product();
+        productoAEliminar.setNumeroSerial(numeroSerial);
+        boolean eliminado = controllerProduct.borrar(productoAEliminar);
+        if (eliminado) {
+            resetearCampos();
+            jTNumeroSerialProducto.setEnabled(true);
+            controllerProduct.MostrarProductos(jTableProducts);
+            JOptionPane.showMessageDialog(this, "Prdoucto eliminado");
+        } else {
+            JOptionPane.showMessageDialog(this, "Problemas con la eliminación del producto");
+        }
+    }//GEN-LAST:event_jBtnDeleteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,6 +526,6 @@ public class ViewGUIProducts extends javax.swing.JFrame {
     private javax.swing.JTextField jTMaterialProducto;
     private javax.swing.JTextField jTNombreProduct;
     private javax.swing.JTextField jTNumeroSerialProducto;
-    private javax.swing.JTable jTableUsuario;
+    private javax.swing.JTable jTableProducts;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,10 +1,13 @@
 package view;
 
+import Controller.UserController;
+import javax.swing.JOptionPane;
+import model.Usuario;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-
 /**
  *
  * @author Juan Zuluaga
@@ -16,6 +19,17 @@ public class ViewGUIUser extends javax.swing.JFrame {
      */
     public ViewGUIUser() {
         initComponents();
+        UserController controllerUser = new UserController();
+        controllerUser.mostrarUsuarios(jTableUsers);
+    }
+
+    private void resetearCampos() {
+        jTIdUser.setText("");
+        jTNombreUser.setText("");
+        jTApellidoUser.setText("");
+        jTDireccionUser.setText("");
+        jTEmailUser.setText("");
+        jTCelularUser.setText("");
     }
 
     /**
@@ -35,20 +49,20 @@ public class ViewGUIUser extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTId = new javax.swing.JTextField();
+        jTIdUser = new javax.swing.JTextField();
         jCTipoUsuario = new javax.swing.JComboBox<>();
-        jTNombre = new javax.swing.JTextField();
-        jTApellido = new javax.swing.JTextField();
-        jTDireccion = new javax.swing.JTextField();
-        jTEmail = new javax.swing.JTextField();
-        jTCelular = new javax.swing.JTextField();
+        jTNombreUser = new javax.swing.JTextField();
+        jTApellidoUser = new javax.swing.JTextField();
+        jTDireccionUser = new javax.swing.JTextField();
+        jTEmailUser = new javax.swing.JTextField();
+        jTCelularUser = new javax.swing.JTextField();
         jBtnUpdate = new javax.swing.JButton();
         jBtnCrear = new javax.swing.JButton();
         jBtnDelete = new javax.swing.JButton();
         jBOrdenar = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableUsers = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -68,21 +82,46 @@ public class ViewGUIUser extends javax.swing.JFrame {
 
         jLabel7.setText("CELULAR");
 
-        jTId.addActionListener(new java.awt.event.ActionListener() {
+        jTIdUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTIdActionPerformed(evt);
+                jTIdUserActionPerformed(evt);
             }
         });
 
         jCTipoUsuario.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Bodeguero", "Vendedor" }));
+        jCTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTipoUsuarioActionPerformed(evt);
+            }
+        });
 
         jBtnUpdate.setText("ACTUALIZAR");
+        jBtnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnUpdateActionPerformed(evt);
+            }
+        });
 
         jBtnCrear.setText("CREAR");
+        jBtnCrear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnCrearActionPerformed(evt);
+            }
+        });
 
         jBtnDelete.setText("BORRAR");
+        jBtnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnDeleteActionPerformed(evt);
+            }
+        });
 
         jBOrdenar.setText("ORDENAR");
+        jBOrdenar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBOrdenarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,15 +143,15 @@ public class ViewGUIUser extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jTCelularUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTDireccionUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jCTipoUsuario, javax.swing.GroupLayout.Alignment.TRAILING, 0, 203, Short.MAX_VALUE)
-                                .addComponent(jTNombre, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTApellido, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jTId))))
+                                .addComponent(jTNombreUser, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTApellidoUser, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTIdUser))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBtnCrear)
@@ -131,7 +170,7 @@ public class ViewGUIUser extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTIdUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -139,23 +178,23 @@ public class ViewGUIUser extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTNombreUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jTApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTApellidoUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTDireccionUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTCelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTCelularUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnDelete)
@@ -167,7 +206,7 @@ public class ViewGUIUser extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de usuarios"));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableUsers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -178,7 +217,12 @@ public class ViewGUIUser extends javax.swing.JFrame {
 
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jTableUsers.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableUsersMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableUsers);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -223,9 +267,125 @@ public class ViewGUIUser extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdActionPerformed
+    private void jTIdUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTIdUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTIdActionPerformed
+    }//GEN-LAST:event_jTIdUserActionPerformed
+
+
+    private void jCTipoUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTipoUsuarioActionPerformed
+        // TODO add your handling code here:
+        String tipoUserSelected = (String) jCTipoUsuario.getSelectedItem();
+        int pos = jCTipoUsuario.getSelectedIndex();
+
+        System.out.println("Texto seleccionado: " + tipoUserSelected);
+        System.out.println("Posicion seleccionado: " + pos);
+
+
+    }//GEN-LAST:event_jCTipoUsuarioActionPerformed
+
+    private void jBtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCrearActionPerformed
+        // TODO add your handling code here:
+        int idUser = Integer.parseInt(jTIdUser.getText());
+        String tipoUserSelected = (String) jCTipoUsuario.getSelectedItem();
+        String nombre = jTNombreUser.getText();
+        String apellido = jTApellidoUser.getText();
+        String direccion = jTDireccionUser.getText();
+        String cellphone = jTCelularUser.getText();
+        String email = jTEmailUser.getText();
+
+        Usuario user = new Usuario(idUser, tipoUserSelected, nombre, apellido, direccion, cellphone, email);
+
+        UserController controllerUser = new UserController();
+        boolean exito = controllerUser.insertar(user);
+
+        if (exito) {
+            resetearCampos();
+            JOptionPane.showMessageDialog(this, "Usuario registrado con exito");
+            controllerUser.mostrarUsuarios(jTableUsers);
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al agregar el usuario");
+        }
+
+    }//GEN-LAST:event_jBtnCrearActionPerformed
+
+    private void jTableUsersMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUsersMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = jTableUsers.getSelectedRow();
+        if (selectedRow >= 0) {
+            Object idUsuario = jTableUsers.getValueAt(selectedRow, jTableUsers.getColumn("id").getModelIndex());
+            if (idUsuario != null) {
+                int idUsuarioInt = Integer.parseInt(idUsuario.toString());
+
+                UserController controllerUser = new UserController();
+
+                Usuario updateUser = controllerUser.searchByIdUsuario(idUsuarioInt);
+
+                if (updateUser != null) {
+                    jTIdUser.setText(String.valueOf(updateUser.getId()));
+                    jCTipoUsuario.setSelectedItem(updateUser.getTipoUSer());
+                    jTNombreUser.setText(updateUser.getNombre());
+                    jTApellidoUser.setText(updateUser.getApellido());
+                    jTDireccionUser.setText(updateUser.getDireccion());
+                    jTCelularUser.setText(updateUser.getCellphone());
+                    jTEmailUser.setText(updateUser.getEmail());
+                    jTIdUser.setEnabled(false);
+                } else {
+                    JOptionPane.showMessageDialog(this, "No se pudieron cargar los datos");
+                }
+            }
+        }
+    }//GEN-LAST:event_jTableUsersMouseClicked
+
+    private void jBtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnUpdateActionPerformed
+        // TODO add your handling code here:
+        int idUsuario = Integer.parseInt(jTIdUser.getText());
+        String tipoUserSelected = (String) jCTipoUsuario.getSelectedItem();
+        String nombre = jTNombreUser.getText();
+        String apellido = jTApellidoUser.getText();
+        String direccion = jTDireccionUser.getText();
+        String cellphone = jTCelularUser.getText();
+        String email = jTEmailUser.getText();
+
+        Usuario user = new Usuario(idUsuario, tipoUserSelected, nombre, apellido, direccion, cellphone, email);
+
+        UserController controlleUser = new UserController();
+        boolean updateSuccess = controlleUser.updateUser(user);
+
+        if (updateSuccess) {
+            resetearCampos();
+            jTIdUser.setEnabled(true);
+            controlleUser.mostrarUsuarios(jTableUsers);
+            JOptionPane.showMessageDialog(this, "Usuario actualizado con exito");
+        } else {
+            JOptionPane.showMessageDialog(this, "Error al actualizar el usuario");
+        }
+    }//GEN-LAST:event_jBtnUpdateActionPerformed
+
+    private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
+        // TODO add your handling code here:
+        int idUsuario = Integer.parseInt(jTIdUser.getText());
+        UserController controllerUser = new UserController();
+        Usuario usuarioAEliminar = new Usuario();
+        usuarioAEliminar.setId(idUsuario);
+        boolean eliminado = controllerUser.borrar(usuarioAEliminar);
+
+        if (eliminado) {
+            resetearCampos();
+            jTIdUser.setEnabled(true);
+            controllerUser.mostrarUsuarios(jTableUsers);
+            JOptionPane.showMessageDialog(this, "Usuario eliminado");
+        } else {
+            JOptionPane.showMessageDialog(this, "No se pudo eliminar correctamente el usuario");
+        }
+    }//GEN-LAST:event_jBtnDeleteActionPerformed
+
+    private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
+        // TODO add your handling code here:
+        UserController controllerUser = new UserController();
+        resetearCampos();
+        jTIdUser.setEnabled(true);
+        controllerUser.mostrarUsuarios(jTableUsers);
+    }//GEN-LAST:event_jBOrdenarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -278,12 +438,12 @@ public class ViewGUIUser extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTApellido;
-    private javax.swing.JTextField jTCelular;
-    private javax.swing.JTextField jTDireccion;
-    private javax.swing.JTextField jTEmail;
-    private javax.swing.JTextField jTId;
-    private javax.swing.JTextField jTNombre;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTApellidoUser;
+    private javax.swing.JTextField jTCelularUser;
+    private javax.swing.JTextField jTDireccionUser;
+    private javax.swing.JTextField jTEmailUser;
+    private javax.swing.JTextField jTIdUser;
+    private javax.swing.JTextField jTNombreUser;
+    private javax.swing.JTable jTableUsers;
     // End of variables declaration//GEN-END:variables
 }

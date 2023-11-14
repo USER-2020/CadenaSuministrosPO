@@ -235,7 +235,21 @@ public class ProductController implements ICRUD {
 
     @Override
     public boolean borrar(Object obj) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        if (obj instanceof Product) {
+            Product producto = (Product) obj;
+            String consulta = "DELETE FROM product WHERE numeroSerial = ?";
+
+            try (PreparedStatement statement = connection.prepareStatement(consulta)) {
+                statement.setInt(1, producto.getNumeroSerial());
+
+                int filasAfectadas = statement.executeUpdate();
+                return filasAfectadas > 0;
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
     }
 
     @Override

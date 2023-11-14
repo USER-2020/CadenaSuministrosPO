@@ -20,14 +20,14 @@ public class Usuario implements Comparable<Usuario> {
     }
 
     private int id;
-    private TipoUsuario tipoUSer;
+    private String tipoUSer;
     private String nombre;
     private String apellido;
     private String direccion;
     private String cellphone;
     private String email;
 
-    public Usuario(int id, TipoUsuario tipoUSer, String nombre, String apellido, String direccion, String cellphone, String email) {
+    public Usuario(int id, String tipoUSer, String nombre, String apellido, String direccion, String cellphone, String email) {
         this.id = id;
         this.tipoUSer = tipoUSer;
         this.nombre = nombre;
@@ -35,8 +35,9 @@ public class Usuario implements Comparable<Usuario> {
         this.direccion = direccion;
         this.cellphone = cellphone;
         this.email = email;
-        
     }
+
+   
 
     public Usuario() {
     }
@@ -49,13 +50,13 @@ public class Usuario implements Comparable<Usuario> {
         this.id = id;
     }
 
-    public TipoUsuario getTipoUSer() {
+    public String getTipoUSer() {
         return tipoUSer;
     }
 
-    public void setTipoUSer(TipoUsuario tipoUSer) {
+    public void setTipoUSer(String tipoUSer) {
         this.tipoUSer = tipoUSer;
-    }
+    }  
 
     public String getNombre() {
         return nombre;

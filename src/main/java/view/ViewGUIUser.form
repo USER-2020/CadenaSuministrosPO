@@ -78,17 +78,17 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jTCelular" min="-2" pref="203" max="-2" attributes="0"/>
-                                      <Component id="jTEmail" min="-2" pref="203" max="-2" attributes="0"/>
-                                      <Component id="jTDireccion" min="-2" pref="203" max="-2" attributes="0"/>
+                                      <Component id="jTCelularUser" min="-2" pref="203" max="-2" attributes="0"/>
+                                      <Component id="jTEmailUser" min="-2" pref="203" max="-2" attributes="0"/>
+                                      <Component id="jTDireccionUser" min="-2" pref="203" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                               <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                                   <Component id="jCTipoUsuario" alignment="1" pref="203" max="32767" attributes="0"/>
-                                  <Component id="jTNombre" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jTApellido" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="jTId" max="32767" attributes="0"/>
+                                  <Component id="jTNombreUser" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jTApellidoUser" alignment="1" max="32767" attributes="0"/>
+                                  <Component id="jTIdUser" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -115,7 +115,7 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTId" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTIdUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -125,27 +125,27 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTNombreUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTApellido" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTApellidoUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTDireccion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTDireccionUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel6" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTEmail" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTEmailUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTCelular" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jTCelularUser" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -195,9 +195,9 @@
             <Property name="text" type="java.lang.String" value="CELULAR"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTId">
+        <Component class="javax.swing.JTextField" name="jTIdUser">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTIdActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTIdUserActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JComboBox" name="jCTipoUsuario">
@@ -210,39 +210,54 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCTipoUsuarioActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTNombre">
+        <Component class="javax.swing.JTextField" name="jTNombreUser">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTApellido">
+        <Component class="javax.swing.JTextField" name="jTApellidoUser">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTDireccion">
+        <Component class="javax.swing.JTextField" name="jTDireccionUser">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTEmail">
+        <Component class="javax.swing.JTextField" name="jTEmailUser">
         </Component>
-        <Component class="javax.swing.JTextField" name="jTCelular">
+        <Component class="javax.swing.JTextField" name="jTCelularUser">
         </Component>
         <Component class="javax.swing.JButton" name="jBtnUpdate">
           <Properties>
             <Property name="text" type="java.lang.String" value="ACTUALIZAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnUpdateActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBtnCrear">
           <Properties>
             <Property name="text" type="java.lang.String" value="CREAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnCrearActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBtnDelete">
           <Properties>
             <Property name="text" type="java.lang.String" value="BORRAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBtnDeleteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBOrdenar">
           <Properties>
             <Property name="text" type="java.lang.String" value="ORDENAR"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBOrdenarActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -283,7 +298,7 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="javax.swing.JTable" name="jTable1">
+            <Component class="javax.swing.JTable" name="jTableUsers">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="0" rowCount="4"/>
@@ -295,6 +310,9 @@
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableUsersMouseClicked"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

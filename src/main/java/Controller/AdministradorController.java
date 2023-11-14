@@ -52,7 +52,7 @@ public class AdministradorController implements ICRUD{
             if( admin.getId() == idAdmin){
                 admin.setNombre(admin.getNombre());
                 admin.setApellido(admin.getApellido());
-                admin.setTipoUSer(Administrador.TipoUsuario.Administrador);
+                admin.setTipoUSer("Administrador");
                 admin.setDireccion(admin.getDireccion());
                 admin.setEmail(admin.getEmail());
                 admin.setCellphone(admin.getCellphone());

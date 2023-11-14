@@ -51,7 +51,7 @@ public class BodegueroController implements ICRUD{
             if(bod.getId() == idBodeguero){
                 bod.setNombre(bod.getNombre());
                 bod.setApellido(bod.getApellido());
-                bod.setTipoUSer(Bodeguero.TipoUsuario.Bodeguero);
+                bod.setTipoUSer("Bodeguero");
                 bod.setDireccion(bod.getDireccion());
                 bod.setEmail(bod.getEmail());
                 bod.setCellphone(bod.getCellphone());

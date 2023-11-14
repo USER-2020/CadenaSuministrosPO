@@ -54,7 +54,7 @@ public class VendedorController implements ICRUD{
             // Después de actualizar, puedes devolver el objeto actualizado o un indicador de éxito.
             vendedor.setNombre(vendedor.getNombre());
             vendedor.setApellido(vendedor.getApellido());
-            vendedor.setTipoUSer(Usuario.TipoUsuario.Vendedor);
+            vendedor.setTipoUSer("Vendedor");
             vendedor.setDireccion(vendedor.getDireccion());
             vendedor.setEmail(vendedor.getEmail());
             vendedor.setCellphone(vendedor.getCellphone());
