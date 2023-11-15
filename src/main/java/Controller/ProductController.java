@@ -4,6 +4,9 @@
  */
 package Controller;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -43,8 +46,8 @@ public class ProductController implements ICRUD {
     public boolean insertar(Object obj) {
         boolean insertar = false;
         Product producto = (Product) obj;
-        String consulta = "INSERT INTO product (nombre, numeroSerial, descripcion, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Reemplaza con el nombre real de tu tabla y las columnas correspondientes
+        String consulta = "INSERT INTO product (nombre, numeroSerial, descripcion, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Reemplaza con el nombre real de tu tabla y las columnas correspondientes
 
         try (PreparedStatement statement = connection.prepareStatement(consulta)) {
             statement.setString(1, producto.getNombre());
@@ -60,12 +63,17 @@ public class ProductController implements ICRUD {
             statement.setFloat(11, producto.getCostoVenta());
             statement.setFloat(12, producto.getCostoAlmacenamiento());
 
-            int filasAfectadas = statement.executeUpdate();
-            if (filasAfectadas > 0) {
-                insertar = true;
+            // Lee el archivo y conviértelo en un arreglo de bytes
+            try (InputStream archivoFoto = new FileInputStream(producto.getImagen())) {
+                statement.setBlob(15, archivoFoto);
+
+                int filasAfectadas = statement.executeUpdate();
+                if (filasAfectadas > 0) {
+                    insertar = true;
+                }
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (SQLException | IOException ex) {
+            ex.printStackTrace();
         }
 
         return insertar;
@@ -105,12 +113,13 @@ public class ProductController implements ICRUD {
         modelo.addColumn("costoProduccion");
         modelo.addColumn("costoVenta");
         modelo.addColumn("costoAlmacenamiento");
+        modelo.addColumn("imagenBLOB");
 
         paramTablaTotalProductos.setModel(modelo);
 
         consultaSQL = "SELECT * FROM product";
 
-        String[] datos = new String[12];
+        String[] datos = new String[13];
         Statement st;
 
         try {
@@ -130,6 +139,7 @@ public class ProductController implements ICRUD {
                 datos[9] = rs.getString(10);
                 datos[10] = rs.getString(11);
                 datos[11] = rs.getString(12);
+                datos[12] = rs.getString(13);
 
                 modelo.addRow(datos);
 

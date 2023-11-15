@@ -32,7 +32,7 @@ public class MenuGUI extends javax.swing.JFrame {
         jBCrudUser = new javax.swing.JButton();
         jBCrudProductos = new javax.swing.JButton();
         jBProductosHerrajes = new javax.swing.JButton();
-        jBProductosElectricos = new javax.swing.JButton();
+        jBCrudProductosElectricos = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,10 +59,10 @@ public class MenuGUI extends javax.swing.JFrame {
 
         jBProductosHerrajes.setText("CRUD PRODUCTOS HERRAJES");
 
-        jBProductosElectricos.setText("CRUD PRODUCTOS ELECTRICOS");
-        jBProductosElectricos.addActionListener(new java.awt.event.ActionListener() {
+        jBCrudProductosElectricos.setText("CRUD PRODUCTOS ELECTRICOS");
+        jBCrudProductosElectricos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBProductosElectricosActionPerformed(evt);
+                jBCrudProductosElectricosActionPerformed(evt);
             }
         });
 
@@ -74,7 +74,7 @@ public class MenuGUI extends javax.swing.JFrame {
                 .addContainerGap(118, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBProductosHerrajes)
-                    .addComponent(jBProductosElectricos))
+                    .addComponent(jBCrudProductosElectricos))
                 .addGap(109, 109, 109))
             .addGroup(layout.createSequentialGroup()
                 .addGap(154, 154, 154)
@@ -110,7 +110,7 @@ public class MenuGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBProductosHerrajes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBProductosElectricos)
+                .addComponent(jBCrudProductosElectricos)
                 .addGap(49, 49, 49))
         );
 
@@ -124,9 +124,12 @@ public class MenuGUI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jBCrudUserActionPerformed
 
-    private void jBProductosElectricosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBProductosElectricosActionPerformed
+    private void jBCrudProductosElectricosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCrudProductosElectricosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jBProductosElectricosActionPerformed
+        ViewGUIProductsElectrics productEVIew = new ViewGUIProductsElectrics();
+        productEVIew.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBCrudProductosElectricosActionPerformed
 
     private void jBCrudProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCrudProductosActionPerformed
         // TODO add your handling code here:
@@ -172,8 +175,8 @@ public class MenuGUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCrudProductos;
+    private javax.swing.JButton jBCrudProductosElectricos;
     private javax.swing.JButton jBCrudUser;
-    private javax.swing.JButton jBProductosElectricos;
     private javax.swing.JButton jBProductosHerrajes;
     private javax.swing.JLabel jLNombreUsuario;
     private javax.swing.JLabel jLabel1;

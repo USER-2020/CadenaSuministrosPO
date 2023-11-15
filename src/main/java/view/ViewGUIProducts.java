@@ -1,8 +1,13 @@
 package view;
 
 import Controller.ProductController;
+import java.awt.Image;
+import java.io.File;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import model.Product;
 
@@ -65,6 +70,10 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jTNombreProduct = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jTIdBodega = new javax.swing.JTextField();
+        jBVolverAlMenu = new javax.swing.JButton();
+        jTRouteImg = new javax.swing.JTextField();
+        jBSelectFile = new javax.swing.JButton();
+        jLIcon = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProducts = new javax.swing.JTable();
@@ -143,6 +152,20 @@ public class ViewGUIProducts extends javax.swing.JFrame {
             }
         });
 
+        jBVolverAlMenu.setText("VOLVER AL MENU");
+        jBVolverAlMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVolverAlMenuActionPerformed(evt);
+            }
+        });
+
+        jBSelectFile.setText("Seleccionar");
+        jBSelectFile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSelectFileActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -161,9 +184,18 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                     .addComponent(jLabel9)
                     .addComponent(jLabel12))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTRouteImg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jBSelectFile)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTDescripcionProducto, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jTColorProducto, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -171,27 +203,29 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                             .addComponent(jTMarcaProducto)
                             .addComponent(jTMaterialProducto)
                             .addComponent(jTNombreProduct))
-                        .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jBtnCrear)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jBtnUpdate)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jBtnDelete))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel11))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTCostoProduccionProducto)
+                                        .addComponent(jTCostoAlmacenamientoProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                        .addComponent(jTCostoVentaProducto))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBtnCrear)
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jBOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jBtnUpdate))
+                                .addComponent(jBOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBtnDelete))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel8)
-                                    .addComponent(jLabel10)
-                                    .addComponent(jLabel11))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jTCostoProduccionProducto)
-                                    .addComponent(jTCostoAlmacenamientoProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
-                                    .addComponent(jTCostoVentaProducto)))))
-                    .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jBVolverAlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -236,18 +270,26 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                             .addComponent(jBtnUpdate)
                             .addComponent(jBtnCrear))
                         .addGap(12, 12, 12)
-                        .addComponent(jBOrdenar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBOrdenar)
+                            .addComponent(jBVolverAlMenu))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addComponent(jLabel9)
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(24, 24, 24)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jTRouteImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBSelectFile))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de productos"));
@@ -282,7 +324,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -326,6 +368,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jTCostoProduccionProducto.setText("");
         jTCostoVentaProducto.setText("");
         jTCostoAlmacenamientoProducto.setText("");
+        jLIcon.setIcon(null);
     }
 
     private void jBtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCrearActionPerformed
@@ -335,7 +378,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         String descripcion = jTDescripcionProducto.getText();
         int idBodega = Integer.parseInt(jTIdBodega.getText());
         String color = jTColorProducto.getText();
-        String imagen = null;
+        String imagen = jTRouteImg.getText();
         String marca = jTMarcaProducto.getText();
         String material = jTMaterialProducto.getText();
         String demanda = jTDemandaProducto.getText();
@@ -368,7 +411,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         String descripcion = jTDescripcionProducto.getText();
         int idBodega = Integer.parseInt(jTIdBodega.getText());
         String color = jTColorProducto.getText();
-        String imagen = null;
+        String imagen = jTRouteImg.getText();
         String marca = jTMarcaProducto.getText();
         String material = jTMaterialProducto.getText();
         String demanda = jTDemandaProducto.getText();
@@ -410,6 +453,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                     jTNombreProduct.setText(updateProduct.getNombre());
                     jTDescripcionProducto.setText(updateProduct.getDescripcion());
                     jTColorProducto.setText(updateProduct.getColor());
+                    jTRouteImg.setText(updateProduct.getImagen());
                     jTMaterialProducto.setText(updateProduct.getMaterial());
                     jTMarcaProducto.setText(updateProduct.getMarca());
                     jTDemandaProducto.setText(updateProduct.getDemanda());
@@ -417,6 +461,13 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                     jTCostoProduccionProducto.setText(String.valueOf(updateProduct.getCostoProduccion()));
                     jTCostoVentaProducto.setText(String.valueOf(updateProduct.getCostoVenta()));
                     jTCostoAlmacenamientoProducto.setText(String.valueOf(updateProduct.getCostoAlmacenamiento()));
+                    if (jTRouteImg.getText().length() > 0) {
+//                        File fileSelect = file.getSelectedFile();
+//                        jTRouteImg.setText(String.valueOf(fileSelect));
+                        Image icon = getToolkit().getImage(jTRouteImg.getText());
+                        icon = icon.getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+                        jLIcon.setIcon(new ImageIcon(icon));
+                    }
                     jTNumeroSerialProducto.setEnabled(false); //inhabil;itar el campo de numero de serial par ano poderlo modificar
                 } else {
                     jTNumeroSerialProducto.setEnabled(false); //habilitar de nuevo el campo por default
@@ -459,6 +510,31 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBtnDeleteActionPerformed
 
+    private void jBVolverAlMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVolverAlMenuActionPerformed
+        // TODO add your handling code here:
+        MenuGUI menu = new MenuGUI();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBVolverAlMenuActionPerformed
+
+    private void jBSelectFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSelectFileActionPerformed
+        // TODO add your handling code here:
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Formatos de archivo JPEG(*.JPG;*.JPEG;*.PNG)", "jpg", "jpeg", "png");
+        JFileChooser file = new JFileChooser();
+        file.addChoosableFileFilter(filter);
+        file.setDialogTitle("Buscar imagenes de productos");
+        File ruta = new File("C:\\Users\\Juan Zuluaga\\Desktop\\imgsProductosPOO");
+        file.setCurrentDirectory(ruta);
+        int ventana = file.showOpenDialog(null);
+        if (ventana == JFileChooser.APPROVE_OPTION) {
+            File fileSelect = file.getSelectedFile();
+            jTRouteImg.setText(String.valueOf(fileSelect));
+            Image icon = getToolkit().getImage(jTRouteImg.getText());
+            icon = icon.getScaledInstance(80, 80, Image.SCALE_DEFAULT);
+            jLIcon.setIcon(new ImageIcon(icon));
+        }
+    }//GEN-LAST:event_jBSelectFileActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -497,9 +573,12 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBOrdenar;
+    private javax.swing.JButton jBSelectFile;
+    private javax.swing.JButton jBVolverAlMenu;
     private javax.swing.JButton jBtnCrear;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JButton jBtnUpdate;
+    private javax.swing.JLabel jLIcon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -526,6 +605,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
     private javax.swing.JTextField jTMaterialProducto;
     private javax.swing.JTextField jTNombreProduct;
     private javax.swing.JTextField jTNumeroSerialProducto;
+    private javax.swing.JTextField jTRouteImg;
     private javax.swing.JTable jTableProducts;
     // End of variables declaration//GEN-END:variables
 }

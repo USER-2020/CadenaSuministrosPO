@@ -60,6 +60,7 @@ public class ViewGUIUser extends javax.swing.JFrame {
         jBtnCrear = new javax.swing.JButton();
         jBtnDelete = new javax.swing.JButton();
         jBOrdenar = new javax.swing.JButton();
+        jBVolverAlMenu = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsers = new javax.swing.JTable();
@@ -123,6 +124,13 @@ public class ViewGUIUser extends javax.swing.JFrame {
             }
         });
 
+        jBVolverAlMenu.setText("VOLVER AL MENU");
+        jBVolverAlMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBVolverAlMenuActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -154,13 +162,17 @@ public class ViewGUIUser extends javax.swing.JFrame {
                                 .addComponent(jTIdUser))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBtnCrear)
-                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBtnUpdate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jBtnDelete)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBVolverAlMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jBtnCrear)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBtnUpdate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jBtnDelete)))
                         .addGap(2, 2, 2)))
                 .addContainerGap())
         );
@@ -201,7 +213,9 @@ public class ViewGUIUser extends javax.swing.JFrame {
                     .addComponent(jBtnUpdate)
                     .addComponent(jBtnCrear))
                 .addGap(12, 12, 12)
-                .addComponent(jBOrdenar))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBOrdenar)
+                    .addComponent(jBVolverAlMenu)))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de usuarios"));
@@ -387,6 +401,13 @@ public class ViewGUIUser extends javax.swing.JFrame {
         controllerUser.mostrarUsuarios(jTableUsers);
     }//GEN-LAST:event_jBOrdenarActionPerformed
 
+    private void jBVolverAlMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVolverAlMenuActionPerformed
+        // TODO add your handling code here:
+        MenuGUI menu = new MenuGUI();
+        menu.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jBVolverAlMenuActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -424,6 +445,7 @@ public class ViewGUIUser extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBOrdenar;
+    private javax.swing.JButton jBVolverAlMenu;
     private javax.swing.JButton jBtnCrear;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JButton jBtnUpdate;

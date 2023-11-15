@@ -12,6 +12,7 @@ public class ElectricProducts extends Product{
     
     private String carga;
     private String calibre;
+    
 
     public ElectricProducts() {
     }
