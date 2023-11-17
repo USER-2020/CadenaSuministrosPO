@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.sql.Blob;
+
 /**
  *
  * @author Juan Fernando Zuluaga
@@ -12,10 +14,12 @@ public class HerrajesProducts extends Product {
 
     private String tipoElemento;
 
-    public HerrajesProducts(String tipoElemento, String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
-        super(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
+    public HerrajesProducts(String tipoElemento, String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento, Blob imagenBLOB) {
+        super(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB);
         this.tipoElemento = tipoElemento;
     }
+
+    
 
     public HerrajesProducts() {
     }

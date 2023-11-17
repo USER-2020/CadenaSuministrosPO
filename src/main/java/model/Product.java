@@ -4,21 +4,21 @@
  */
 package model;
 
+import java.sql.Blob;
 import java.util.Objects;
 
 /**
  *
  * @author Juan Fernando Zuluaga
  */
-public class Product implements Comparable<Product>{
+public class Product implements Comparable<Product> {
+
     //Componente  de una clase concreta
     //Atributos tienen modificadores que definen la visibilidad
     /**
-     * public
-     * private
-     * protected
-     * within
-     **/
+     * public private protected within
+     *
+     */
     private String descripcion;
     private String nombre;
     public int numeroSerial;
@@ -27,14 +27,14 @@ public class Product implements Comparable<Product>{
     private String imagen;
     private String marca;
     private String material;
-    private String  demanda;
+    private String demanda;
     private float costoProduccion;
     private float costoVenta;
     private float costoAlmacenamiento;
-    
-    //Contructores
+    private Blob imagenBLOB;
 
-    public Product(String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
+    //Contructores
+    public Product(String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento, Blob imagenBLOB) {
         this.descripcion = descripcion;
         this.nombre = nombre;
         this.numeroSerial = numeroSerial;
@@ -47,11 +47,11 @@ public class Product implements Comparable<Product>{
         this.costoProduccion = costoProduccion;
         this.costoVenta = costoVenta;
         this.costoAlmacenamiento = costoAlmacenamiento;
+        this.imagenBLOB = imagenBLOB;
     }
-     
 
     public Product() {
-        
+
     }
 
     //Métodos
@@ -152,11 +152,19 @@ public class Product implements Comparable<Product>{
         this.costoAlmacenamiento = costoAlmacenamiento;
     }
 
+    public Blob getImagenBLOB() {
+        return imagenBLOB;
+    }
+
+    public void setImagenBLOB(Blob imagenBLOB) {
+        this.imagenBLOB = imagenBLOB;
+    }
+
     @Override
     public String toString() {
         return "Product{" + "descripcion=" + descripcion + ", nombre=" + nombre + ", numeroSerial=" + numeroSerial + ", idBodega=" + idBodega + ", color=" + color + ", imagen=" + imagen + ", marca=" + marca + ", material=" + material + ", demanda=" + demanda + ", costoProduccion=" + costoProduccion + ", costoVenta=" + costoVenta + ", costoAlmacenamiento=" + costoAlmacenamiento + '}';
     }
-   
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -189,10 +197,4 @@ public class Product implements Comparable<Product>{
         return Integer.compare(this.numeroSerial, otroProducto.numeroSerial);
     }
 
-    
-    
-    
-    
-    
-    
 }

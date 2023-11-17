@@ -79,14 +79,7 @@ public class HerrajesProductsController implements ICRUD {
         return false;
     }
 
-    @Override
-    public boolean ordenar() {
-        if (!arregloProductosHerrajes.isEmpty()) {
-            Collections.sort(arregloProductosHerrajes);
-            return true;
-        }
-        return false;
-    }
+   
 
     @Override
     public Object consultar(Object obj) {
@@ -97,5 +90,25 @@ public class HerrajesProductsController implements ICRUD {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public void ordenarBurbuja() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ordenar(int i, int j) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ordenar(int i, int j, ArrayList array) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ordenar() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

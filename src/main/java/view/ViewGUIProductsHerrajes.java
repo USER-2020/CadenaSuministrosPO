@@ -1,6 +1,7 @@
 package view;
 
 import Controller.ProductController;
+import java.sql.Blob;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -24,7 +25,7 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
     public ViewGUIProductsHerrajes() {
         initComponents();
         ProductController controllerProduct = new ProductController();
-        controllerProduct.MostrarProductos(jTableProducts);
+//        controllerProduct.MostrarProductos(jTableProducts);
 
     }
 
@@ -355,8 +356,9 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         float costoProduccion = Float.parseFloat(jTCostoProduccionProducto.getText());
         float costoVenta = Float.parseFloat(jTCostoVentaProducto.getText());
         float costoAlmacenamiento = Float.parseFloat(jTCostoAlmacenamientoProducto.getText());
+        Blob imagenBLOB = null;
 
-        Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
+        Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB);
 
         ProductController controllerProduct = new ProductController();
         boolean exito = controllerProduct.insertar(producto);
@@ -364,7 +366,7 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         if (exito) {
             resetearCampos();
             JOptionPane.showMessageDialog(this, "Producto agregado con exito");
-            controllerProduct.MostrarProductos(jTableProducts);
+//            controllerProduct.MostrarProductos(jTableProducts);
         } else {
             JOptionPane.showMessageDialog(this, "Error al crear el producto");
         }
@@ -388,8 +390,9 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         float costoProduccion = Float.parseFloat(jTCostoProduccionProducto.getText());
         float costoVenta = Float.parseFloat(jTCostoVentaProducto.getText());
         float costoAlmacenamiento = Float.parseFloat(jTCostoAlmacenamientoProducto.getText());
+        Blob imagenBLOB = null;
 
-        Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
+        Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB);
 
         ProductController productoController = new ProductController();
         boolean updateSuccess = productoController.updateProduct(producto);
@@ -397,7 +400,7 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         if (updateSuccess) {
             resetearCampos();
             jTNumeroSerialProducto.setEnabled(true);
-            productoController.MostrarProductos(jTableProducts);
+//            productoController.MostrarProductos(jTableProducts);
             JOptionPane.showMessageDialog(this, "Producto actualizado con exito");
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar el producto");
@@ -448,7 +451,7 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         ProductController controllerProduct = new ProductController();
         resetearCampos();
         jTNumeroSerialProducto.setEnabled(true);
-        controllerProduct.MostrarProductos(jTableProducts);
+//        controllerProduct.MostrarProductos(jTableProducts);
     }//GEN-LAST:event_jBOrdenarActionPerformed
 
     private void jTCostoProduccionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCostoProduccionProductoActionPerformed
@@ -465,7 +468,7 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         if (eliminado) {
             resetearCampos();
             jTNumeroSerialProducto.setEnabled(true);
-            controllerProduct.MostrarProductos(jTableProducts);
+//            controllerProduct.MostrarProductos(jTableProducts);
             JOptionPane.showMessageDialog(this, "Prdoucto eliminado");
         } else {
             JOptionPane.showMessageDialog(this, "Problemas con la eliminación del producto");

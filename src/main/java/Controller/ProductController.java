@@ -7,6 +7,7 @@ package Controller;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,15 +33,18 @@ import resource.ConexionBD;
  */
 public class ProductController implements ICRUD {
 
+    public DefaultTableModel modelo;
 //    public static ArrayList<Product> arregloProductos = new  ArrayList<Product>();
     private Connection connection;
     ConexionBD conn = new ConexionBD();
 
     public ProductController() {
         connection = conn.connectMYSQL();
+        modelo = new DefaultTableModel();
     }
 
-    private List<Product> productos;
+//    private ArrayList<Product> productos;
+    public ArrayList<Product> productos;
 
     @Override
     public boolean insertar(Object obj) {
@@ -92,7 +96,7 @@ public class ProductController implements ICRUD {
 
     }
 
-    public void MostrarProductos(JTable paramTablaTotalProductos) {
+    public void MostrarProductos(JTable paramTablaTotalProductos, ArrayList<Product> productos) {
 
         ConexionBD conn = new ConexionBD();
         DefaultTableModel modelo = new DefaultTableModel();
@@ -143,6 +147,25 @@ public class ProductController implements ICRUD {
 
                 modelo.addRow(datos);
 
+                
+                // Crear un objeto Product y agregarlo al ArrayList
+                Product producto = new Product();
+                producto.setNumeroSerial(Integer.parseInt(datos[0]));
+                producto.setDescripcion(datos[1]);
+                producto.setNombre(datos[2]);
+                producto.setIdBodega(Integer.parseInt(datos[3]));
+                producto.setColor(datos[4]);
+                producto.setImagen(datos[5]);
+                producto.setMarca(datos[6]);
+                producto.setMaterial(datos[7]);
+                producto.setDemanda(datos[8]);
+                producto.setCostoProduccion(Float.parseFloat(datos[9]));
+                producto.setCostoVenta(Float.parseFloat(datos[10]));
+                producto.setCostoAlmacenamiento(Float.parseFloat(datos[11]));
+                producto.setImagenBLOB(null);
+
+                productos.add(producto);
+
             }
 
             paramTablaTotalProductos.setModel(modelo);
@@ -156,7 +179,7 @@ public class ProductController implements ICRUD {
     @Override
     public void consultar() {
 
-        productos = new ArrayList<>();
+//        productos = new ArrayList<>();
         String consulta = "SELECT * FROM product";
 
         try (PreparedStatement statement = connection.prepareStatement(consulta); ResultSet resultSet = statement.executeQuery()) {
@@ -263,11 +286,6 @@ public class ProductController implements ICRUD {
     }
 
     @Override
-    public boolean ordenar() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
     public Object consultar(Object obj) {
 //        Product pp = (Product) obj;
 //        int pos = Collections.binarySearch(arregloProductos, pp);
@@ -276,6 +294,42 @@ public class ProductController implements ICRUD {
 //        } else {
 //            return null;
 //        }
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ordenar() {
+        //
+        Collections.sort(productos);
+    }
+
+    @Override
+    public void ordenarBurbuja() {
+        //Burbuja
+        Product pptemp;
+        for (int i = 0; i < productos.size(); i++) {
+            for (int j = 0; j < productos.size(); j++) {
+                if (productos.get(i).getMarca().compareToIgnoreCase(productos.get(j).getMarca()) > 0) {
+                    pptemp = productos.get(i);
+                    productos.set(i, productos.get(j));
+                    productos.set(j, pptemp);
+                    System.out.println(productos);
+                }
+            }
+
+        }
+
+    }
+
+    @Override
+    public void ordenar(int i, int j) {
+        //Merdge sort
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ordenar(int i, int j, ArrayList array) {
+        //QuicSort
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

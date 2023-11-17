@@ -4,6 +4,8 @@
  */
 package model;
 
+import java.sql.Blob;
+
 /**
  *
  * @author Juan Fernando Zuluaga
@@ -16,13 +18,15 @@ public class ElectricProducts extends Product{
 
     public ElectricProducts() {
     }
-    
-    
-    public ElectricProducts(String carga, String calibre, String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
-        super(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
+
+    public ElectricProducts(String carga, String calibre, String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento, Blob imagenBLOB) {
+        super(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB);
         this.carga = carga;
         this.calibre = calibre;
     }
+    
+    
+    
 
     public ElectricProducts(String carga, String calibre) {
         this.carga = carga;

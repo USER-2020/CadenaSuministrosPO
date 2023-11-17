@@ -4,6 +4,8 @@
  */
 package Controller;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Juan Fernando Zuluaga Aguirre
@@ -14,7 +16,10 @@ public interface ICRUD {
     public void consultar();
     public Object actualizar(int id); //Update
     public boolean borrar(Object obj); //Delete
-    public boolean ordenar();
+    public void ordenar();
+    public void ordenarBurbuja();
+    public void ordenar(int i, int j);
+    public void ordenar(int i, int j, ArrayList array);
     public Object consultar(Object obj);
     
 }

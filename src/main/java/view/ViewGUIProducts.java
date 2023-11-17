@@ -3,6 +3,7 @@ package view;
 import Controller.ProductController;
 import java.awt.Image;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
@@ -22,14 +23,15 @@ import model.Product;
 public class ViewGUIProducts extends javax.swing.JFrame {
 
     private ProductController controllerProduct;
+    ArrayList<Product> productos;
 
     /**
      * Creates new form ViewGUIUser
      */
     public ViewGUIProducts() {
-        initComponents();
+        initComponents(); 
         ProductController controllerProduct = new ProductController();
-        controllerProduct.MostrarProductos(jTableProducts);
+        controllerProduct.MostrarProductos(jTableProducts, productos);
 
     }
 
@@ -74,6 +76,9 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jTRouteImg = new javax.swing.JTextField();
         jBSelectFile = new javax.swing.JButton();
         jLIcon = new javax.swing.JLabel();
+        jBOrdenarBurbuja = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProducts = new javax.swing.JTable();
@@ -166,43 +171,56 @@ public class ViewGUIProducts extends javax.swing.JFrame {
             }
         });
 
+        jBOrdenarBurbuja.setText("ORDENAR QS");
+        jBOrdenarBurbuja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBOrdenarBurbujaActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("MERGE SORT");
+
+        jButton2.setText("ORDENAR BURBUJA");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel6)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel3)
-                        .addComponent(jLabel4)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(32, 32, 32)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel2)
+                                .addComponent(jLabel1)
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTRouteImg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBSelectFile)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jTRouteImg, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBSelectFile)
+                        .addGap(18, 18, 18)
                         .addComponent(jLIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTDescripcionProducto, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTColorProducto, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jTNumeroSerialProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
-                            .addComponent(jTMarcaProducto)
-                            .addComponent(jTMaterialProducto)
-                            .addComponent(jTNombreProduct))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTDescripcionProducto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTColorProducto, javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(jTNumeroSerialProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE)
+                                .addComponent(jTMarcaProducto)
+                                .addComponent(jTMaterialProducto)
+                                .addComponent(jTNombreProduct)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,10 +241,16 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                                         .addComponent(jTCostoAlmacenamientoProducto, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
                                         .addComponent(jTCostoVentaProducto))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jBOrdenarBurbuja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jBVolverAlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(20, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jBVolverAlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jButton1)))
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,24 +296,33 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                         .addGap(12, 12, 12)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jBOrdenar)
-                            .addComponent(jBVolverAlMenu))))
-                .addGap(18, 18, 18)
+                            .addComponent(jBVolverAlMenu))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jBOrdenarBurbuja)
+                            .addComponent(jButton1))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel7)
-                            .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(24, 24, 24)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTDemandaProducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel12)
                             .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jTRouteImg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jBSelectFile))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jBSelectFile))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                        .addComponent(jLIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de productos"));
@@ -394,7 +427,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         if (exito) {
             resetearCampos();
             JOptionPane.showMessageDialog(this, "Producto agregado con exito");
-            controllerProduct.MostrarProductos(jTableProducts);
+            controllerProduct.MostrarProductos(jTableProducts, productos);
         } else {
             JOptionPane.showMessageDialog(this, "Error al crear el producto");
         }
@@ -427,7 +460,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         if (updateSuccess) {
             resetearCampos();
             jTNumeroSerialProducto.setEnabled(true);
-            productoController.MostrarProductos(jTableProducts);
+            productoController.MostrarProductos(jTableProducts, productos);
             JOptionPane.showMessageDialog(this, "Producto actualizado con exito");
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar el producto");
@@ -483,10 +516,12 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
     private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
         // TODO add your handling code here:
+        
         ProductController controllerProduct = new ProductController();
+        controllerProduct.modelo.removeRow(0);
         resetearCampos();
         jTNumeroSerialProducto.setEnabled(true);
-        controllerProduct.MostrarProductos(jTableProducts);
+        controllerProduct.MostrarProductos(jTableProducts, productos);
     }//GEN-LAST:event_jBOrdenarActionPerformed
 
     private void jTCostoProduccionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCostoProduccionProductoActionPerformed
@@ -495,6 +530,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
         // TODO add your handling code here:
+        
         int numeroSerial = Integer.parseInt(jTNumeroSerialProducto.getText());
         ProductController controllerProduct = new ProductController();
         Product productoAEliminar = new Product();
@@ -503,7 +539,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         if (eliminado) {
             resetearCampos();
             jTNumeroSerialProducto.setEnabled(true);
-            controllerProduct.MostrarProductos(jTableProducts);
+            controllerProduct.MostrarProductos(jTableProducts, productos);
             JOptionPane.showMessageDialog(this, "Prdoucto eliminado");
         } else {
             JOptionPane.showMessageDialog(this, "Problemas con la eliminación del producto");
@@ -534,6 +570,13 @@ public class ViewGUIProducts extends javax.swing.JFrame {
             jLIcon.setIcon(new ImageIcon(icon));
         }
     }//GEN-LAST:event_jBSelectFileActionPerformed
+
+    private void jBOrdenarBurbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarBurbujaActionPerformed
+        // TODO add your handling code here:
+        ProductController controllerProducts = new ProductController();
+        controllerProducts.ordenarBurbuja();
+        JOptionPane.showMessageDialog(this, "Ordeamineto por burbuja exitoso");
+    }//GEN-LAST:event_jBOrdenarBurbujaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -573,11 +616,14 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBOrdenar;
+    private javax.swing.JButton jBOrdenarBurbuja;
     private javax.swing.JButton jBSelectFile;
     private javax.swing.JButton jBVolverAlMenu;
     private javax.swing.JButton jBtnCrear;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JButton jBtnUpdate;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLIcon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
