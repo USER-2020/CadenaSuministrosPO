@@ -30,59 +30,76 @@ import resource.ConexionBD;
  * @author Juan Zuluaga
  */
 public class ElectricProductsController implements ICRUD {
-
+    
     private Connection connection;
     ConexionBD conn = new ConexionBD();
-
+    
+    public DefaultListModel modelo;
+    
+    public ArrayList<ElectricProducts> productosElectricos;
+    
     public ElectricProductsController() {
         connection = conn.connectMYSQL();
+        modelo = new DefaultListModel();
+        productosElectricos = new ArrayList<>();
     }
-
+    
     @Override
     public boolean insertar(Object obj) {
         boolean insertar = false;
         ElectricProducts productoE = (ElectricProducts) obj;
 
-        String consulta = "INSERT INTO electricproducts (nombre, numeroSerial, descripcion, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, carga, calibre, imagenBLOB) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Reemplaza con el nombre real de tu tabla y las columnas correspondientes
-        try (PreparedStatement statement = connection.prepareStatement(consulta)) {
-            statement.setString(1, productoE.getNombre());
-            statement.setInt(2, productoE.getNumeroSerial());
-            statement.setString(3, productoE.getDescripcion());
-            statement.setInt(4, productoE.getIdBodega());
-            statement.setString(5, productoE.getColor());
-            statement.setString(6, productoE.getImagen());
-            statement.setString(7, productoE.getMarca());
-            statement.setString(8, productoE.getMaterial());
-            statement.setString(9, productoE.getDemanda());
-            statement.setFloat(10, productoE.getCostoProduccion());
-            statement.setFloat(11, productoE.getCostoVenta());
-            statement.setFloat(12, productoE.getCostoAlmacenamiento());
-            statement.setString(13, productoE.getCarga());
-            statement.setString(14, productoE.getCalibre());
-            // Lee el archivo y conviértelo en un arreglo de bytes
-            try (InputStream archivoFoto = new FileInputStream(productoE.getImagen())) {
-                statement.setBlob(15, archivoFoto);
-
-                int filasAfectadas = statement.executeUpdate();
-                if (filasAfectadas > 0) {
-                    insertar = true;
-                }
+        //verificar quqe el producto electrico ya existe en el arreglo 
+        if (!productosElectricos.contains(productoE)) {
+            productosElectricos.add(productoE);
+            System.out.println("Contenido del ArrayList productos electricos:  ");
+            for (ElectricProducts pe : productosElectricos) {
+                System.out.println(pe);
             }
-        } catch (SQLException | IOException ex) {
-            ex.printStackTrace();
+            
+            String consulta = "INSERT INTO electricproducts (nombre, numeroSerial, descripcion, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, carga, calibre, imagenBLOB) "
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"; // Reemplaza con el nombre real de tu tabla y las columnas correspondientes
+            try (PreparedStatement statement = connection.prepareStatement(consulta)) {
+                statement.setString(1, productoE.getNombre());
+                statement.setInt(2, productoE.getNumeroSerial());
+                statement.setString(3, productoE.getDescripcion());
+                statement.setInt(4, productoE.getIdBodega());
+                statement.setString(5, productoE.getColor());
+                statement.setString(6, productoE.getImagen());
+                statement.setString(7, productoE.getMarca());
+                statement.setString(8, productoE.getMaterial());
+                statement.setString(9, productoE.getDemanda());
+                statement.setFloat(10, productoE.getCostoProduccion());
+                statement.setFloat(11, productoE.getCostoVenta());
+                statement.setFloat(12, productoE.getCostoAlmacenamiento());
+                statement.setString(13, productoE.getCarga());
+                statement.setString(14, productoE.getCalibre());
+                // Lee el archivo y conviértelo en un arreglo de bytes
+                try (InputStream archivoFoto = new FileInputStream(productoE.getImagen())) {
+                    statement.setBlob(15, archivoFoto);
+                    
+                    int filasAfectadas = statement.executeUpdate();
+                    if (filasAfectadas > 0) {
+                        productoE.setNumeroSerial(productoE.getNumeroSerial());
+                        insertar = true;
+                    }
+                    
+                }
+                
+            } catch (SQLException | IOException ex) {
+                ex.printStackTrace();
+            }
         }
-
         return insertar;
     }
-
+    
     public void mostrarProductoElectricos(JTable tableModelElectric) {
         ConexionBD conn = new ConexionBD();
         DefaultTableModel modelo = new DefaultTableModel();
         TableRowSorter<TableModel> ordenarTabla = new TableRowSorter<TableModel>(modelo);
-
+        
         String consultaSQL = "";
-
+        
         modelo.addColumn("numeroSerial");
         modelo.addColumn("descripcion");
         modelo.addColumn("nombre");
@@ -98,18 +115,18 @@ public class ElectricProductsController implements ICRUD {
         modelo.addColumn("carga");
         modelo.addColumn("calibre");
         modelo.addColumn("imagenBLOB");
-
+        
         tableModelElectric.setModel(modelo);
-
+        
         consultaSQL = "SELECT * FROM electricproducts";
-
+        
         String[] datosModel = new String[15];
         Statement st;
-
+        
         try {
             st = conn.connectMYSQL().createStatement();
             ResultSet rs = st.executeQuery(consultaSQL);
-
+            
             while (rs.next()) {
                 datosModel[0] = rs.getString(1);
                 datosModel[1] = rs.getString(2);
@@ -126,19 +143,19 @@ public class ElectricProductsController implements ICRUD {
                 datosModel[12] = rs.getString(13);
                 datosModel[13] = rs.getString(14);
                 datosModel[14] = rs.getString(15);
-
+                
                 modelo.addRow(datosModel);
             }
-
+            
             tableModelElectric.setModel(modelo);
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
     }
-
+    
     public boolean updateProductElectric(ElectricProducts productoElectrico) {
         String consultaSQL = "UPDATE electricproducts SET nombre = ?, descripcion = ?, idBodega = ?, color = ?, imagen = ?, marca = ?, material = ?, demanda = ?, costoProduccion = ?, costoVenta = ?, costoAlmacenamiento = ? , carga = ?, calibre = ? WHERE numeroSerial = ?";
-
+        
         try (PreparedStatement statement = connection.prepareStatement(consultaSQL)) {
             statement.setString(1, productoElectrico.getNombre());
             statement.setString(2, productoElectrico.getDescripcion());
@@ -154,26 +171,26 @@ public class ElectricProductsController implements ICRUD {
             statement.setString(12, productoElectrico.getCarga());
             statement.setString(13, productoElectrico.getCalibre());
             statement.setInt(14, productoElectrico.getNumeroSerial());
-
+            
             int filasAfectadas = statement.executeUpdate();
             return filasAfectadas > 0;
-
+            
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false;
         }
     }
-
+    
     public ElectricProducts searchByNumeroSerial(int numeroSerial) {
         ElectricProducts productoE = null;
         ConexionBD conn = new ConexionBD();
-
+        
         try (Connection connection = conn.connectMYSQL()) {
             String consultaSQL = "SELECT * FROM electricproducts WHERE numeroSerial = ?";
-
+            
             try (PreparedStatement statement = connection.prepareStatement(consultaSQL)) {
                 statement.setInt(1, numeroSerial);
-
+                
                 try (ResultSet resultSet = statement.executeQuery()) {
                     if (resultSet.next()) {
                         productoE = new ElectricProducts();
@@ -198,68 +215,65 @@ public class ElectricProductsController implements ICRUD {
             Logger.getLogger(ElectricProductsController.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
         }
-
+        
         return productoE;
     }
-
+    
     @Override
     public Object consultar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void consultar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public Object actualizar(int id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public boolean borrar(Object obj) {
         if (obj instanceof ElectricProducts) {
             ElectricProducts productoE = (ElectricProducts) obj;
             String consulta = "DELETE FROM electricproducts WHERE numeroSerial = ?";
-
+            
             try (PreparedStatement statement = connection.prepareStatement(consulta)) {
                 statement.setInt(1, productoE.getNumeroSerial());
-
+                
                 int filasAfectadas = statement.executeUpdate();
                 return filasAfectadas > 0;
-
+                
             } catch (SQLException ex) {
                 ex.printStackTrace();
             }
         }
         return false;
     }
-
     
-
     @Override
     public Object consultar(Object obj) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 //    public static ArrayList<ElectricProducts> arregloProductosElectricos = new ArrayList<ElectricProducts>();
-   
     @Override
     public void ordenar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void ordenar(int i, int j, ArrayList array, JTable paramTablaTotalProductos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void ordenar(int i, int j, JTable paramTablaTotalProductos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-
+    
     @Override
     public void ordenarBurbuja(JTable paramTablaTotalProductos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

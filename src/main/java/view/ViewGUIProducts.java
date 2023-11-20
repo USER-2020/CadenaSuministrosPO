@@ -1,6 +1,7 @@
 package view;
 
 import Controller.ProductController;
+import Excepciones.NameException;
 import java.awt.Image;
 import java.io.File;
 import java.sql.Blob;
@@ -104,6 +105,12 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
         jLabel7.setText("DEMANDA");
 
+        jTNumeroSerialProducto.setText("0");
+        jTNumeroSerialProducto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTNumeroSerialProductoFocusLost(evt);
+            }
+        });
         jTNumeroSerialProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTNumeroSerialProductoActionPerformed(evt);
@@ -149,6 +156,12 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jTCostoProduccionProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTCostoProduccionProductoActionPerformed(evt);
+            }
+        });
+
+        jTNombreProduct.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTNombreProductFocusLost(evt);
             }
         });
 
@@ -611,6 +624,29 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         controllerProduct.ordenar(0, productos.size() - 1, jTableProducts);
         JOptionPane.showMessageDialog(this, "Ordeamineto por MergeSort");
     }//GEN-LAST:event_jBMSActionPerformed
+
+    private void jTNumeroSerialProductoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNumeroSerialProductoFocusLost
+        // TODO add your handling code here:
+        try {
+            Integer.parseInt(jTNumeroSerialProducto.getText());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "El numero serial debe ser un numero entero!");
+            jTNumeroSerialProducto.requestFocus();
+            jTNumeroSerialProducto.setText("0");
+        }
+    }//GEN-LAST:event_jTNumeroSerialProductoFocusLost
+
+    private void jTNombreProductFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreProductFocusLost
+        // TODO add your handling code here:
+        NameException ex = new NameException();
+        try {
+            ex.verificarName(jTNombreProduct.getText());
+        } catch (NameException ex1) {
+            JOptionPane.showMessageDialog(this, ex1.getMessage());
+            jTNombreProduct.requestFocus();
+            jTNombreProduct.setText("");
+        }
+    }//GEN-LAST:event_jTNombreProductFocusLost
 
     /**
      * @param args the command line arguments

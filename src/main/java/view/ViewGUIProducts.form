@@ -275,7 +275,11 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTNumeroSerialProducto">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="0"/>
+          </Properties>
           <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTNumeroSerialProductoFocusLost"/>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTNumeroSerialProductoActionPerformed"/>
           </Events>
         </Component>
@@ -351,6 +355,9 @@
         <Component class="javax.swing.JTextField" name="jTCostoAlmacenamientoProducto">
         </Component>
         <Component class="javax.swing.JTextField" name="jTNombreProduct">
+          <Events>
+            <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="jTNombreProductFocusLost"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel12">
           <Properties>

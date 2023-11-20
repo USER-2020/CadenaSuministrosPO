@@ -21,6 +21,7 @@ view\ViewGUIUser$1.class
 model\Usuario$TipoUsuario.class
 sustentacion_1\sustentacionMain.class
 view\ViewGUIProducts$6.class
+Excepciones\NameException.class
 view\ViewGUIUser$8.class
 Controller\BodegueroController.class
 view\ViewGUIProductsHerrajes$8.class
@@ -29,6 +30,7 @@ view\ViewGUIProducts$10.class
 view\ViewGUIProductsElectrics.class
 Controller\UserController.class
 Controller\AuthenticationController.class
+Controller\ProductController.class
 view\ViewGUIProducts$14.class
 view\ViewGUIProductsHerrajes$4.class
 Controller\AdministradorController.class
@@ -54,7 +56,9 @@ view\ViewGUIProductsHerrajes.class
 view\ViewGUIProductsElectrics$6.class
 view\MenuGUI$4.class
 view\ViewGUIUser$10.class
+Controller\ICRUD.class
 view\ViewGUIProducts$3.class
+view\ViewGUIProducts$16.class
 view\ViewGUIProductsHerrajes$2.class
 view\ViewGUIProductsHerrajes$5.class
 view\ViewGUIProducts$13.class
@@ -71,6 +75,7 @@ model\ElectricProducts.class
 model\Vendedor.class
 view\AutenticacionUser.class
 view\ViewGUIUser$3.class
+view\ViewGUIProducts$15.class
 view\ViewGUIProductsHerrajes$3.class
 model\Administrador.class
 view\ViewGUIProducts$4.class
