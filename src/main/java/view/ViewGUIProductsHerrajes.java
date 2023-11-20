@@ -5,6 +5,7 @@ import java.sql.Blob;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.HerrajesProducts;
 import model.Product;
 
 /*
@@ -356,12 +357,11 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         float costoProduccion = Float.parseFloat(jTCostoProduccionProducto.getText());
         float costoVenta = Float.parseFloat(jTCostoVentaProducto.getText());
         float costoAlmacenamiento = Float.parseFloat(jTCostoAlmacenamientoProducto.getText());
-        Blob imagenBLOB = null;
 
-        Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB);
+        HerrajesProducts productoH = new HerrajesProducts(demanda, descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
 
         ProductController controllerProduct = new ProductController();
-        boolean exito = controllerProduct.insertar(producto);
+        boolean exito = controllerProduct.insertar(productoH);
 
         if (exito) {
             resetearCampos();
@@ -392,10 +392,10 @@ public class ViewGUIProductsHerrajes extends javax.swing.JFrame {
         float costoAlmacenamiento = Float.parseFloat(jTCostoAlmacenamientoProducto.getText());
         Blob imagenBLOB = null;
 
-        Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB);
+        HerrajesProducts productoH = new HerrajesProducts(demanda, descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
 
         ProductController productoController = new ProductController();
-        boolean updateSuccess = productoController.updateProduct(producto);
+        boolean updateSuccess = productoController.updateProduct(productoH);
 
         if (updateSuccess) {
             resetearCampos();

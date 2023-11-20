@@ -14,6 +14,7 @@ model\Product.class
 view\ViewGUIProductsElectrics$1.class
 view\ViewGUIProductsElectrics$7.class
 view\AutenticacionUser$1.class
+view\ViewGUIUser$12.class
 view\MenuGUI$2.class
 view\ViewGUIProductsElectrics$4.class
 view\ViewGUIUser$1.class
@@ -28,6 +29,7 @@ view\ViewGUIProducts$10.class
 view\ViewGUIProductsElectrics.class
 Controller\UserController.class
 Controller\AuthenticationController.class
+view\ViewGUIProducts$14.class
 view\ViewGUIProductsHerrajes$4.class
 Controller\AdministradorController.class
 view\MenuGUI$3.class
@@ -36,6 +38,7 @@ view\ViewGUIProductsElectrics$12.class
 view\ViewGUIProducts$2.class
 view\ViewGUIProductsElectrics$8.class
 Controller\VendedorController.class
+view\ViewGUIUser$11.class
 view\ViewGUIProductsHerrajes$1.class
 view\ViewGUIUser$5.class
 resource\Main2.class
@@ -50,9 +53,11 @@ view\ViewGUIProductsElectrics$2.class
 view\ViewGUIProductsHerrajes.class
 view\ViewGUIProductsElectrics$6.class
 view\MenuGUI$4.class
+view\ViewGUIUser$10.class
 view\ViewGUIProducts$3.class
 view\ViewGUIProductsHerrajes$2.class
 view\ViewGUIProductsHerrajes$5.class
+view\ViewGUIProducts$13.class
 view\ViewGUIProductsHerrajes$10.class
 view\ViewGUIUser$9.class
 view\ViewGUIProductsElectrics$11.class

@@ -6,6 +6,7 @@ package Controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.swing.JTable;
 import model.Usuario;
 import model.Vendedor;
 
@@ -91,20 +92,23 @@ public class VendedorController implements ICRUD{
     @Override
     public void ordenar() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    } 
+
 
     @Override
-    public void ordenarBurbuja() {
+    public void ordenar(int i, int j, ArrayList array, JTable paramTablaTotalProductos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void ordenar(int i, int j) {
+    public void ordenar(int i, int j, JTable paramTablaTotalProductos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public void ordenar(int i, int j, ArrayList array) {
+    public void ordenarBurbuja(JTable paramTablaTotalProductos) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
+    
 }

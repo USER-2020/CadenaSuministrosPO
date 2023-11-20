@@ -3,6 +3,7 @@ package view;
 import Controller.ProductController;
 import java.awt.Image;
 import java.io.File;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -22,16 +23,18 @@ import model.Product;
  */
 public class ViewGUIProducts extends javax.swing.JFrame {
 
-    private ProductController controllerProduct;
+    private ProductController controllerProduct = new ProductController();
     ArrayList<Product> productos;
 
     /**
      * Creates new form ViewGUIUser
      */
     public ViewGUIProducts() {
-        initComponents(); 
-        ProductController controllerProduct = new ProductController();
-        controllerProduct.MostrarProductos(jTableProducts, productos);
+        initComponents();
+
+        // Obtener la lista de productos del controlador
+        productos = controllerProduct.productos;
+        controllerProduct.MostrarProductos(jTableProducts);
 
     }
 
@@ -76,9 +79,9 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jTRouteImg = new javax.swing.JTextField();
         jBSelectFile = new javax.swing.JButton();
         jLIcon = new javax.swing.JLabel();
+        jBQS = new javax.swing.JButton();
+        jBMS = new javax.swing.JButton();
         jBOrdenarBurbuja = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableProducts = new javax.swing.JTable();
@@ -171,16 +174,26 @@ public class ViewGUIProducts extends javax.swing.JFrame {
             }
         });
 
-        jBOrdenarBurbuja.setText("ORDENAR QS");
+        jBQS.setText("ORDENAR QS");
+        jBQS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBQSActionPerformed(evt);
+            }
+        });
+
+        jBMS.setText("MERGE SORT");
+        jBMS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBMSActionPerformed(evt);
+            }
+        });
+
+        jBOrdenarBurbuja.setText("ORDENAR BURBUJA");
         jBOrdenarBurbuja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBOrdenarBurbujaActionPerformed(evt);
             }
         });
-
-        jButton1.setText("MERGE SORT");
-
-        jButton2.setText("ORDENAR BURBUJA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -242,13 +255,13 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                                         .addComponent(jTCostoVentaProducto))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jBOrdenarBurbuja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jBQS, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jBOrdenar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jBVolverAlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jButton1)))
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING)))
+                                    .addComponent(jBMS)))
+                            .addComponent(jBOrdenarBurbuja, javax.swing.GroupLayout.Alignment.LEADING)))
                     .addComponent(jTIdBodega, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -299,8 +312,8 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                             .addComponent(jBVolverAlMenu))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jBOrdenarBurbuja)
-                            .addComponent(jButton1))))
+                            .addComponent(jBQS)
+                            .addComponent(jBMS))))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -319,7 +332,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
-                        .addComponent(jButton2)
+                        .addComponent(jBOrdenarBurbuja)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                         .addComponent(jLIcon, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
@@ -402,6 +415,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         jTCostoVentaProducto.setText("");
         jTCostoAlmacenamientoProducto.setText("");
         jLIcon.setIcon(null);
+        jTRouteImg.setText("");
     }
 
     private void jBtnCrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnCrearActionPerformed
@@ -421,13 +435,13 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
         Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
 
-        ProductController controllerProduct = new ProductController();
+//        ProductController controllerProduct = new ProductController();
         boolean exito = controllerProduct.insertar(producto);
 
         if (exito) {
             resetearCampos();
             JOptionPane.showMessageDialog(this, "Producto agregado con exito");
-            controllerProduct.MostrarProductos(jTableProducts, productos);
+            controllerProduct.MostrarProductos(jTableProducts);
         } else {
             JOptionPane.showMessageDialog(this, "Error al crear el producto");
         }
@@ -454,13 +468,13 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
         Product producto = new Product(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
 
-        ProductController productoController = new ProductController();
-        boolean updateSuccess = productoController.updateProduct(producto);
+//        ProductController productoController = new ProductController();
+        boolean updateSuccess = controllerProduct.updateProduct(producto);
 
         if (updateSuccess) {
             resetearCampos();
             jTNumeroSerialProducto.setEnabled(true);
-            productoController.MostrarProductos(jTableProducts, productos);
+            controllerProduct.MostrarProductos(jTableProducts);
             JOptionPane.showMessageDialog(this, "Producto actualizado con exito");
         } else {
             JOptionPane.showMessageDialog(this, "Error al actualizar el producto");
@@ -477,8 +491,7 @@ public class ViewGUIProducts extends javax.swing.JFrame {
                 int numeroSerialProducto = Integer.parseInt(numeroSerial.toString());
 
                 //Intancia del controlador de productos
-                ProductController controllerProduct = new ProductController();
-
+//                ProductController controllerProduct = new ProductController();
                 Product updateProduct = controllerProduct.searchByNumeroSerial(numeroSerialProducto);
 
                 if (updateProduct != null) {
@@ -516,12 +529,10 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
     private void jBOrdenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarActionPerformed
         // TODO add your handling code here:
-        
-        ProductController controllerProduct = new ProductController();
-        controllerProduct.modelo.removeRow(0);
+
         resetearCampos();
         jTNumeroSerialProducto.setEnabled(true);
-        controllerProduct.MostrarProductos(jTableProducts, productos);
+        controllerProduct.MostrarProductos(jTableProducts);
     }//GEN-LAST:event_jBOrdenarActionPerformed
 
     private void jTCostoProduccionProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTCostoProduccionProductoActionPerformed
@@ -530,20 +541,32 @@ public class ViewGUIProducts extends javax.swing.JFrame {
 
     private void jBtnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnDeleteActionPerformed
         // TODO add your handling code here:
-        
+
         int numeroSerial = Integer.parseInt(jTNumeroSerialProducto.getText());
-        ProductController controllerProduct = new ProductController();
+//        ProductController controllerProduct = new ProductController();
         Product productoAEliminar = new Product();
         productoAEliminar.setNumeroSerial(numeroSerial);
-        boolean eliminado = controllerProduct.borrar(productoAEliminar);
-        if (eliminado) {
+//        boolean eliminado = controllerProduct.borrar(productoAEliminar);
+        System.out.println("Producto a eliminar: " + productoAEliminar);
+        System.out.println("¿El producto está en el ArrayList? " + productos.contains(productoAEliminar));
+
+        if (productoAEliminar != null) {
             resetearCampos();
             jTNumeroSerialProducto.setEnabled(true);
-            controllerProduct.MostrarProductos(jTableProducts, productos);
+            controllerProduct.borrar(productoAEliminar);
+            controllerProduct.MostrarProductos(jTableProducts);
             JOptionPane.showMessageDialog(this, "Prdoucto eliminado");
         } else {
-            JOptionPane.showMessageDialog(this, "Problemas con la eliminación del producto");
+            JOptionPane.showMessageDialog(this, "Problemas con la elimincaion");
         }
+//        if (eliminado) {
+//            resetearCampos();
+//            jTNumeroSerialProducto.setEnabled(true);
+//            controllerProduct.MostrarProductos(jTableProducts);
+//            JOptionPane.showMessageDialog(this, "Prdoucto eliminado");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Problemas con la eliminación del producto");
+//        }
     }//GEN-LAST:event_jBtnDeleteActionPerformed
 
     private void jBVolverAlMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBVolverAlMenuActionPerformed
@@ -571,12 +594,23 @@ public class ViewGUIProducts extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBSelectFileActionPerformed
 
+    private void jBQSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBQSActionPerformed
+        // TODO add your handling code here:
+        controllerProduct.ordenar(0, productos.size() - 1, productos, jTableProducts);
+        JOptionPane.showMessageDialog(this, "Ordeamineto por quicSort exitoso(Marca)");
+    }//GEN-LAST:event_jBQSActionPerformed
+
     private void jBOrdenarBurbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarBurbujaActionPerformed
         // TODO add your handling code here:
-        ProductController controllerProducts = new ProductController();
-        controllerProducts.ordenarBurbuja();
-        JOptionPane.showMessageDialog(this, "Ordeamineto por burbuja exitoso");
+        controllerProduct.ordenarBurbuja(jTableProducts);
+        JOptionPane.showMessageDialog(this, "Ordeamineto por burbuja");
     }//GEN-LAST:event_jBOrdenarBurbujaActionPerformed
+
+    private void jBMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMSActionPerformed
+        // TODO add your handling code here:
+        controllerProduct.ordenar(0, productos.size() - 1, jTableProducts);
+        JOptionPane.showMessageDialog(this, "Ordeamineto por MergeSort");
+    }//GEN-LAST:event_jBMSActionPerformed
 
     /**
      * @param args the command line arguments
@@ -615,15 +649,15 @@ public class ViewGUIProducts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBMS;
     private javax.swing.JButton jBOrdenar;
     private javax.swing.JButton jBOrdenarBurbuja;
+    private javax.swing.JButton jBQS;
     private javax.swing.JButton jBSelectFile;
     private javax.swing.JButton jBVolverAlMenu;
     private javax.swing.JButton jBtnCrear;
     private javax.swing.JButton jBtnDelete;
     private javax.swing.JButton jBtnUpdate;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLIcon;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;

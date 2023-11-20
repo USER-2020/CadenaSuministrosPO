@@ -10,23 +10,19 @@ import java.sql.Blob;
  *
  * @author Juan Fernando Zuluaga
  */
-public class ElectricProducts extends Product{
-    
+public class ElectricProducts extends Product {
+
     private String carga;
     private String calibre;
-    
 
     public ElectricProducts() {
     }
 
-    public ElectricProducts(String carga, String calibre, String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento, Blob imagenBLOB) {
-        super(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento, imagenBLOB);
+    public ElectricProducts(String carga, String calibre, String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
+        super(descripcion, nombre, numeroSerial, idBodega, color, imagen, marca, material, demanda, costoProduccion, costoVenta, costoAlmacenamiento);
         this.carga = carga;
         this.calibre = calibre;
     }
-    
-    
-    
 
     public ElectricProducts(String carga, String calibre) {
         this.carga = carga;
@@ -54,8 +50,6 @@ public class ElectricProducts extends Product{
         return super.toString() + "ElectricProducts{" + "carga=" + carga + ", calibre=" + calibre + '}';
     }
 
-      
-    
     @Override
     public int compareTo(Product otroProducto) {
         // Implementa la lógica de comparación específica para ElectricProducts
@@ -68,5 +62,5 @@ public class ElectricProducts extends Product{
         // Implementa la comparación si el otro objeto no es de tipo ElectricProducts
         return super.compareTo(otroProducto);
     }
-    
+
 }

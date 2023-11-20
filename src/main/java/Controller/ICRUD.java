@@ -5,6 +5,7 @@
 package Controller;
 
 import java.util.ArrayList;
+import javax.swing.JTable;
 
 /**
  *
@@ -17,9 +18,9 @@ public interface ICRUD {
     public Object actualizar(int id); //Update
     public boolean borrar(Object obj); //Delete
     public void ordenar();
-    public void ordenarBurbuja();
-    public void ordenar(int i, int j);
-    public void ordenar(int i, int j, ArrayList array);
+    public void ordenarBurbuja(JTable paramTablaTotalProductos);
+    public void ordenar(int i, int j, JTable paramTablaTotalProductos);
+    public void ordenar(int i, int j, ArrayList array, JTable paramTablaTotalProductos);
     public Object consultar(Object obj);
     
 }

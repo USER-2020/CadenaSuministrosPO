@@ -31,10 +31,9 @@ public class Product implements Comparable<Product> {
     private float costoProduccion;
     private float costoVenta;
     private float costoAlmacenamiento;
-    private Blob imagenBLOB;
 
     //Contructores
-    public Product(String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento, Blob imagenBLOB) {
+    public Product(String descripcion, String nombre, int numeroSerial, int idBodega, String color, String imagen, String marca, String material, String demanda, float costoProduccion, float costoVenta, float costoAlmacenamiento) {
         this.descripcion = descripcion;
         this.nombre = nombre;
         this.numeroSerial = numeroSerial;
@@ -47,7 +46,6 @@ public class Product implements Comparable<Product> {
         this.costoProduccion = costoProduccion;
         this.costoVenta = costoVenta;
         this.costoAlmacenamiento = costoAlmacenamiento;
-        this.imagenBLOB = imagenBLOB;
     }
 
     public Product() {
@@ -152,14 +150,6 @@ public class Product implements Comparable<Product> {
         this.costoAlmacenamiento = costoAlmacenamiento;
     }
 
-    public Blob getImagenBLOB() {
-        return imagenBLOB;
-    }
-
-    public void setImagenBLOB(Blob imagenBLOB) {
-        this.imagenBLOB = imagenBLOB;
-    }
-
     @Override
     public String toString() {
         return "Product{" + "descripcion=" + descripcion + ", nombre=" + nombre + ", numeroSerial=" + numeroSerial + ", idBodega=" + idBodega + ", color=" + color + ", imagen=" + imagen + ", marca=" + marca + ", material=" + material + ", demanda=" + demanda + ", costoProduccion=" + costoProduccion + ", costoVenta=" + costoVenta + ", costoAlmacenamiento=" + costoAlmacenamiento + '}';
@@ -178,17 +168,11 @@ public class Product implements Comparable<Product> {
         if (this == obj) {
             return true;
         }
-        if (obj == null) {
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
         }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Product other = (Product) obj;
-        if (this.numeroSerial != other.numeroSerial) {
-            return false;
-        }
-        return Objects.equals(this.nombre, other.nombre);
+        Product other = (Product) obj;
+        return this.numeroSerial == other.numeroSerial;
     }
 
     @Override

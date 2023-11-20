@@ -121,7 +121,7 @@ public class Usuario implements Comparable<Usuario> {
         if (this.id != other.id) {
             return false;
         }
-        return Objects.equals(this.nombre, other.nombre);
+        return Objects.equals(this.id, other.id);
     }
 
     @Override
