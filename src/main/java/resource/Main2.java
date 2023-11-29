@@ -8,6 +8,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import view.AutenticacionUserGUI;
+import view.MenuGUI;
 
 /**
  *
@@ -51,7 +54,13 @@ public class Main2 {
             }
         } else {
             System.out.println("No se pudo establecer la conexión.");
+            JOptionPane.showMessageDialog(null, "No se pudo establecer la conexión.");
         }
+
+        MenuGUI menu = new MenuGUI();
+        menu.setVisible(false);
+        AutenticacionUserGUI authGUI = new AutenticacionUserGUI();
+        authGUI.setVisible(true);
     }
 
 }

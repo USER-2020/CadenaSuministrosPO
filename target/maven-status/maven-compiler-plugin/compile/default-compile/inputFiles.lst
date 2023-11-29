@@ -4,7 +4,6 @@ C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\model\Vended
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\Controller\UserController.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\DTO\UsuarioDTO.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\resource\Main2.java
-C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\view\AutenticacionUser.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\Controller\VendedorController.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\Controller\AuthenticationController.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\view\ViewGUIProducts.java
@@ -16,6 +15,7 @@ C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\Controller\H
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\model\AuthenticationUser.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\resource\ConexionBD.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\view\MenuGUI.java
+C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\view\MainApp.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\view\ViewGUIUser.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\view\ViewGUIProductsHerrajes.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\Controller\BodegueroController.java
@@ -28,3 +28,4 @@ C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\Controller\P
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\Excepciones\FechaException.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\model\ElectricProducts.java
 C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\model\HerrajesProducts.java
+C:\Users\Juan Zuluaga\Desktop\Git\CadenaSuministrosPO\src\main\java\view\AutenticacionUserGUI.java
