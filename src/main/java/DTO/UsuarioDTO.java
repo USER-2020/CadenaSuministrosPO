@@ -2,22 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model;
+package DTO;
 
 import java.util.Objects;
 
 /**
- * Juan Fernando Zuluaga
  *
- *
+ * @author Juan Zuluaga
  */
-public class Usuario implements Comparable<Usuario> {
-
-    public enum TipoUsuario {
-        Administrador,
-        Bodeguero,
-        Vendedor
-    }
+public class UsuarioDTO implements Comparable<UsuarioDTO> {
 
     private int id;
     private String tipoUSer;
@@ -26,9 +19,10 @@ public class Usuario implements Comparable<Usuario> {
     private String direccion;
     private String cellphone;
     private String email;
-    
+    private String fecha_ingreso;
+    private float sueldo;
 
-    public Usuario(int id, String tipoUSer, String nombre, String apellido, String direccion, String cellphone, String email) {
+    public UsuarioDTO(int id, String tipoUSer, String nombre, String apellido, String direccion, String cellphone, String email, String fecha_ingreso, float sueldo) {
         this.id = id;
         this.tipoUSer = tipoUSer;
         this.nombre = nombre;
@@ -36,11 +30,11 @@ public class Usuario implements Comparable<Usuario> {
         this.direccion = direccion;
         this.cellphone = cellphone;
         this.email = email;
+        this.fecha_ingreso = fecha_ingreso;
+        this.sueldo = sueldo;
     }
 
-   
-
-    public Usuario() {
+    public UsuarioDTO() {
     }
 
     public int getId() {
@@ -57,7 +51,7 @@ public class Usuario implements Comparable<Usuario> {
 
     public void setTipoUSer(String tipoUSer) {
         this.tipoUSer = tipoUSer;
-    }  
+    }
 
     public String getNombre() {
         return nombre;
@@ -99,11 +93,26 @@ public class Usuario implements Comparable<Usuario> {
         this.email = email;
     }
 
+    public String getFecha_ingreso() {
+        return fecha_ingreso;
+    }
+
+    public void setFecha_ingreso(String fecha_ingreso) {
+        this.fecha_ingreso = fecha_ingreso;
+    }
+
+    public float getSueldo() {
+        return sueldo;
+    }
+
+    public void setSueldo(float sueldo) {
+        this.sueldo = sueldo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 29 * hash + this.id;
-        hash = 29 * hash + Objects.hashCode(this.nombre);
+        int hash = 5;
+        hash = 67 * hash + this.id;
         return hash;
     }
 
@@ -118,24 +127,18 @@ public class Usuario implements Comparable<Usuario> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Usuario other = (Usuario) obj;
-        if (this.id != other.id) {
-            return false;
-        }
-        return Objects.equals(this.id, other.id);
-    }
-
-    @Override
-    public int compareTo(Usuario otroUsuario) {
-        //throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        return Integer.compare(this.id, otroUsuario.id);
+        final UsuarioDTO other = (UsuarioDTO) obj;
+        return this.id == other.id;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", tipoUSer=" + tipoUSer + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", cellphone=" + cellphone + ", email=" + email + '}';
+        return "UsuarioDTO{" + "id=" + id + ", tipoUSer=" + tipoUSer + ", nombre=" + nombre + ", apellido=" + apellido + ", direccion=" + direccion + ", cellphone=" + cellphone + ", email=" + email + ", fecha_ingreso=" + fecha_ingreso + ", sueldo=" + sueldo + '}';
     }
-    
-    
+
+    @Override
+    public int compareTo(UsuarioDTO otroUser) {
+        return Integer.compare(this.id, otroUser.id);
+    }
 
 }

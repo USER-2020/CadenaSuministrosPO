@@ -1,6 +1,10 @@
 package view;
 
 import Controller.UserController;
+import DTO.UsuarioDTO;
+import Excepciones.EmailException;
+import Excepciones.FechaException;
+import Excepciones.NameException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import model.Usuario;
@@ -20,11 +24,13 @@ public class ViewGUIUser extends javax.swing.JFrame {
      */
     private UserController controllerUser = new UserController();
     ArrayList<Usuario> usuariosList;
+    ArrayList<UsuarioDTO> usuariosList2;
 
     public ViewGUIUser() {
         initComponents();
         //Obtrener usuairo desde el controlador
         usuariosList = controllerUser.usuariosList;
+        usuariosList2 = controllerUser.usuariosList2;
         controllerUser.mostrarUsuarios(jTableUsers);
     }
 
@@ -35,6 +41,8 @@ public class ViewGUIUser extends javax.swing.JFrame {
         jTDireccionUser.setText("");
         jTEmailUser.setText("");
         jTCelularUser.setText("");
+        jTFechaIngreso.setText("");
+        jTSueldo.setText("");
     }
 
     /**
@@ -69,6 +77,10 @@ public class ViewGUIUser extends javax.swing.JFrame {
         jBQS = new javax.swing.JButton();
         jBMS = new javax.swing.JButton();
         jBOrdenarBurbuja = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jTFechaIngreso = new javax.swing.JTextField();
+        jTSueldo = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableUsers = new javax.swing.JTable();
@@ -91,6 +103,11 @@ public class ViewGUIUser extends javax.swing.JFrame {
 
         jLabel7.setText("CELULAR");
 
+        jTIdUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTIdUserFocusLost(evt);
+            }
+        });
         jTIdUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTIdUserActionPerformed(evt);
@@ -101,6 +118,35 @@ public class ViewGUIUser extends javax.swing.JFrame {
         jCTipoUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCTipoUsuarioActionPerformed(evt);
+            }
+        });
+
+        jTNombreUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTNombreUserFocusLost(evt);
+            }
+        });
+        jTNombreUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTNombreUserActionPerformed(evt);
+            }
+        });
+
+        jTApellidoUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTApellidoUserFocusLost(evt);
+            }
+        });
+
+        jTEmailUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTEmailUserFocusLost(evt);
+            }
+        });
+
+        jTCelularUser.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTCelularUserFocusLost(evt);
             }
         });
 
@@ -160,24 +206,57 @@ public class ViewGUIUser extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("FECHA INGRESO");
+
+        jLabel9.setText("SUELDO");
+
+        jTFechaIngreso.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTFechaIngresoFocusLost(evt);
+            }
+        });
+
+        jTSueldo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTSueldoFocusLost(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
+                .addGap(17, 17, 17)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jBOrdenarBurbuja)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBQS)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBMS))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBVolverAlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBtnCrear)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnUpdate)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jBtnDelete)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBtnCrear)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(32, 32, 32)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -189,24 +268,17 @@ public class ViewGUIUser extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jTCelularUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTEmailUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTDireccionUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jBtnUpdate)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jBtnDelete)))
+                                    .addComponent(jTDireccionUser, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel8)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBOrdenarBurbuja)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBQS)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBMS))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBOrdenar, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jBVolverAlMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jTSueldo)
+                            .addComponent(jTFechaIngreso))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -242,6 +314,14 @@ public class ViewGUIUser extends javax.swing.JFrame {
                     .addComponent(jTCelularUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTFechaIngreso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTSueldo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBtnCrear)
                     .addComponent(jBtnUpdate)
                     .addComponent(jBtnDelete))
@@ -255,7 +335,7 @@ public class ViewGUIUser extends javax.swing.JFrame {
                     .addComponent(jBQS))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBOrdenarBurbuja)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addGap(14, 14, 14))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Lista de usuarios"));
@@ -284,14 +364,14 @@ public class ViewGUIUser extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 691, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1)
                 .addContainerGap())
         );
 
@@ -344,8 +424,10 @@ public class ViewGUIUser extends javax.swing.JFrame {
         String direccion = jTDireccionUser.getText();
         String cellphone = jTCelularUser.getText();
         String email = jTEmailUser.getText();
+        String chocorramin = jTFechaIngreso.getText();
+        float sueldo = Float.parseFloat(jTSueldo.getText());
 
-        Usuario user = new Usuario(idUser, tipoUserSelected, nombre, apellido, direccion, cellphone, email);
+        UsuarioDTO user = new UsuarioDTO(idUser, tipoUserSelected, nombre, apellido, direccion, cellphone, email, chocorramin, sueldo);
 
 //        UserController controllerUser = new UserController();
         boolean exito = controllerUser.insertar(user);
@@ -371,7 +453,7 @@ public class ViewGUIUser extends javax.swing.JFrame {
 //                String nombreUsuario = nameUsuario.toString();
 
 //                UserController controllerUser = new UserController();
-                Usuario updateUser = controllerUser.searchByIdUsuario(idUsuarioInt);
+                UsuarioDTO updateUser = controllerUser.searchByIdUsuario(idUsuarioInt);
 
                 if (updateUser != null) {
                     jTIdUser.setText(String.valueOf(updateUser.getId()));
@@ -381,6 +463,8 @@ public class ViewGUIUser extends javax.swing.JFrame {
                     jTDireccionUser.setText(updateUser.getDireccion());
                     jTCelularUser.setText(updateUser.getCellphone());
                     jTEmailUser.setText(updateUser.getEmail());
+                    jTFechaIngreso.setText(updateUser.getFecha_ingreso());
+                    jTSueldo.setText(String.valueOf(updateUser.getSueldo()));
                     jTIdUser.setEnabled(false);
                 } else {
                     JOptionPane.showMessageDialog(this, "No se pudieron cargar los datos");
@@ -398,8 +482,10 @@ public class ViewGUIUser extends javax.swing.JFrame {
         String direccion = jTDireccionUser.getText();
         String cellphone = jTCelularUser.getText();
         String email = jTEmailUser.getText();
+        String fecha_ingreso = jTFechaIngreso.getText();
+        float sueldo = Float.parseFloat(jTSueldo.getText());
 
-        Usuario user = new Usuario(idUsuario, tipoUserSelected, nombre, apellido, direccion, cellphone, email);
+        UsuarioDTO user = new UsuarioDTO(idUsuario, tipoUserSelected, nombre, apellido, direccion, cellphone, email, fecha_ingreso, sueldo);
 
 //        UserController controlleUser = new UserController();
         boolean updateSuccess = controllerUser.updateUser(user);
@@ -418,7 +504,7 @@ public class ViewGUIUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         int idUsuario = Integer.parseInt(jTIdUser.getText());
 //        UserController controllerUser = new UserController();
-        Usuario usuarioAEliminar = new Usuario();
+        UsuarioDTO usuarioAEliminar = new UsuarioDTO();
         usuarioAEliminar.setId(idUsuario);
         boolean eliminado = controllerUser.borrar(usuarioAEliminar);
 
@@ -449,21 +535,116 @@ public class ViewGUIUser extends javax.swing.JFrame {
 
     private void jBQSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBQSActionPerformed
         // TODO add your handling code here:
-        controllerUser.ordenar(0, usuariosList.size() - 1, usuariosList, jTableUsers);
+        controllerUser.ordenar(0, usuariosList2.size() - 1, usuariosList2, jTableUsers);
         JOptionPane.showMessageDialog(this, "Ordeamineto por quicSort exitoso(Apellido)");
     }//GEN-LAST:event_jBQSActionPerformed
 
     private void jBMSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBMSActionPerformed
         // TODO add your handling code here:
-        controllerUser.ordenar(0, usuariosList.size() - 1, jTableUsers);
+        controllerUser.ordenar(0, usuariosList2.size() - 1, jTableUsers);
         JOptionPane.showMessageDialog(this, "Ordeamineto por MergeSort");
     }//GEN-LAST:event_jBMSActionPerformed
 
     private void jBOrdenarBurbujaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBOrdenarBurbujaActionPerformed
         // TODO add your handling code here:
         controllerUser.ordenarBurbuja(jTableUsers);
-        JOptionPane.showMessageDialog(this, "Ordeamineto por burbuja");
+        JOptionPane.showMessageDialog(this, "Ordeamineto por burbuja (TipoUsuario)");
     }//GEN-LAST:event_jBOrdenarBurbujaActionPerformed
+
+    private void jTEmailUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTEmailUserFocusLost
+        // TODO add your handling code here:
+        EmailException emailException = new EmailException();
+        try {
+            String email = jTEmailUser.getText();
+            emailException.verificarEmail(email);
+        } catch (EmailException ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage());
+            jTEmailUser.requestFocus();
+        }
+    }//GEN-LAST:event_jTEmailUserFocusLost
+
+    private void jTFechaIngresoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTFechaIngresoFocusLost
+        // TODO add your handling code here:
+        FechaException fechaException = new FechaException();
+        try {
+            String date = jTFechaIngreso.getText();
+            fechaException.verificarDate(date);
+        } catch (FechaException e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            jTFechaIngreso.requestFocus();
+        }
+    }//GEN-LAST:event_jTFechaIngresoFocusLost
+
+    private void jTNombreUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTNombreUserActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTNombreUserActionPerformed
+
+    private void jTNombreUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTNombreUserFocusLost
+        // TODO add your handling code here:
+        NameException nameException = new NameException();
+        try {
+            String nameUser = jTNombreUser.getText();
+            nameException.verificarName(nameUser);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            jTNombreUser.requestFocus();
+        }
+    }//GEN-LAST:event_jTNombreUserFocusLost
+
+    private void jTApellidoUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTApellidoUserFocusLost
+        // TODO add your handling code here:
+        NameException nameException = new NameException();
+        try {
+            String apellidoUser = jTApellidoUser.getText();
+            nameException.verificarName(apellidoUser);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e.getMessage());
+            jTApellidoUser.requestFocus();
+        }
+    }//GEN-LAST:event_jTApellidoUserFocusLost
+
+    private void jTIdUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTIdUserFocusLost
+        // TODO add your handling code here:
+
+        try {
+            String idUser = jTIdUser.getText();
+            int id = Integer.parseInt(idUser);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El valor del Identificador no es un número válido");
+            // Puedes agregar más código aquí según tus necesidades, como volver a enfocar el campo, etc.
+            jTIdUser.requestFocus();
+            jTIdUser.setText("0");
+        }
+    }//GEN-LAST:event_jTIdUserFocusLost
+
+    private void jTCelularUserFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTCelularUserFocusLost
+        // TODO add your handling code here:
+        try {
+            String celUser = jTCelularUser.getText();
+            int cel = Integer.parseInt(celUser);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El valor del telefono no es un número válido");
+            // Puedes agregar más código aquí según tus necesidades, como volver a enfocar el campo, etc.
+            jTCelularUser.requestFocus();
+            jTCelularUser.setText("0");
+        }
+    }//GEN-LAST:event_jTCelularUserFocusLost
+
+    private void jTSueldoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTSueldoFocusLost
+        // TODO add your handling code here:
+        try {
+            String sueldoUser = jTSueldo.getText();
+            int sueldo = Integer.parseInt(sueldoUser);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "El valor del Identificador no es un número válido");
+            // Puedes agregar más código aquí según tus necesidades, como volver a enfocar el campo, etc.
+            jTSueldo.requestFocus();
+            jTSueldo.setText("0");
+        }
+    }//GEN-LAST:event_jTSueldoFocusLost
 
     /**
      * @param args the command line arguments
@@ -517,6 +698,8 @@ public class ViewGUIUser extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
@@ -524,8 +707,10 @@ public class ViewGUIUser extends javax.swing.JFrame {
     private javax.swing.JTextField jTCelularUser;
     private javax.swing.JTextField jTDireccionUser;
     private javax.swing.JTextField jTEmailUser;
+    private javax.swing.JTextField jTFechaIngreso;
     private javax.swing.JTextField jTIdUser;
     private javax.swing.JTextField jTNombreUser;
+    private javax.swing.JTextField jTSueldo;
     private javax.swing.JTable jTableUsers;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,11 +9,13 @@ view\ViewGUIProducts$9.class
 view\ViewGUIProductsElectrics$13.class
 model\AuthenticationUser.class
 model\HerrajesProducts.class
+view\ViewGUIUser$18.class
 view\ViewGUIUser$4.class
 model\Product.class
 view\ViewGUIProductsElectrics$1.class
 view\ViewGUIProductsElectrics$7.class
 view\AutenticacionUser$1.class
+view\ViewGUIUser$15.class
 view\ViewGUIUser$12.class
 view\MenuGUI$2.class
 view\ViewGUIProductsElectrics$4.class
@@ -28,6 +30,7 @@ view\ViewGUIProductsHerrajes$8.class
 view\ViewGUIProducts$8.class
 view\ViewGUIProducts$10.class
 view\ViewGUIProductsElectrics.class
+view\ViewGUIUser$14.class
 Controller\UserController.class
 Controller\AuthenticationController.class
 Controller\ProductController.class
@@ -38,14 +41,18 @@ view\MenuGUI$3.class
 view\ViewGUIProductsElectrics$5.class
 view\ViewGUIProductsElectrics$12.class
 view\ViewGUIProducts$2.class
+Excepciones\EmailException.class
 view\ViewGUIProductsElectrics$8.class
 Controller\VendedorController.class
 view\ViewGUIUser$11.class
+Excepciones\FechaException.class
 view\ViewGUIProductsHerrajes$1.class
 view\ViewGUIUser$5.class
+DTO\UsuarioDTO.class
 resource\Main2.class
 view\ViewGUIProducts$7.class
 view\ViewGUIProductsElectrics$9.class
+view\ViewGUIUser$13.class
 view\ViewGUIUser$2.class
 view\MenuGUI$1.class
 view\MenuGUI.class
@@ -56,7 +63,9 @@ view\ViewGUIProductsHerrajes.class
 view\ViewGUIProductsElectrics$6.class
 view\MenuGUI$4.class
 view\ViewGUIUser$10.class
+view\ViewGUIUser$20.class
 Controller\ICRUD.class
+view\ViewGUIUser$17.class
 view\ViewGUIProducts$3.class
 view\ViewGUIProducts$16.class
 view\ViewGUIProductsHerrajes$2.class
@@ -70,6 +79,7 @@ view\ViewGUIUser.class
 view\ViewGUIProducts$12.class
 view\ViewGUIProductsHerrajes$6.class
 view\ViewGUIProducts$1.class
+view\ViewGUIUser$19.class
 view\ViewGUIUser$6.class
 model\ElectricProducts.class
 model\Vendedor.class
@@ -83,3 +93,4 @@ view\ViewGUIProductsHerrajes$9.class
 view\AutenticacionUser$2.class
 resource\ConexionBD.class
 Controller\ElectricProductsController.class
+view\ViewGUIUser$16.class
